@@ -55,4 +55,4 @@ if(commandfile) commandfile.run(bot,msg,args)
 
 //bot.commands.get('start').execute();
 
-bot.login("NzA3NjY4Nzk4ODI3NjU5Mjc0.XrMedw.cAUb1n1I-GcWb48YZpS1u3Wy1_c")
+bot.login(process.env.token);
