@@ -26,7 +26,7 @@ module.exports.run = async (bot, msg, args) => {
 			 	data[user.id].message = m.id
 			 	data["playing"].now = data["playing"].now + 1
 			 	
-			 					fs.writeFileSync("./commands/playdata.json", JSON.stringify(data), (err=>{
+			 					fs.writeFileSync("./commands1/playdata.json", JSON.stringify(data), (err=>{
 						if(err) return console.log(err)
 					}))
 					bot.channels.get("712130741865283605").setName(`Now Playing: ${data["playing"].now}`)
