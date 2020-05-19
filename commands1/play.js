@@ -5,7 +5,7 @@ module.exports.run = async (bot, msg, args) => {
 			
 			if(!msg.content.startsWith(config.PREFIX)) return
 			
-			let rawdata = fs.readFileSync('./playdata.json').catch(err => if(err) return console.log(err)); let data = JSON.parse(rawdata); console.log(data);
+			let rawdata = fs.readFileSync('./playdata.json').catch(err => {if(err) return console.log(err)}); let data = JSON.parse(rawdata); console.log(data);
 			
 			
 			if(msg.author.bot) return;
