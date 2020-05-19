@@ -6,7 +6,7 @@ module.exports.run = async (bot, msg, args) => {
 			if(!msg.content.startsWith(config.PREFIX)) return
 			if(!msg.mentions.users.first()) return
 			
-			let rawdata = fs.readFileSync('./playdata.json'); let data = JSON.parse(rawdata); console.log(data);
+			let rawdata = fs.readFileSync('./commands1/playdata.json'); let data = JSON.parse(rawdata); console.log(data);
 			
 				
 			user = msg.mentions.users.first()
@@ -30,7 +30,7 @@ module.exports.run = async (bot, msg, args) => {
 			data[user.id].message = 0
 			data["playing"].now = data["playing"].now - 1
 			
-			fs.writeFileSync("./playdata.json", JSON.stringify(data), (err=>{
+			fs.writeFileSync("./commands1/playdata.json", JSON.stringify(data), (err=>{
 						if(err) return console.log(err)
 						}))
 						bot.channels.get("712130741865283605").setName(`Now Playing: ${data["playing"].now}`)
