@@ -12,7 +12,7 @@ module.exports.run = async (bot, msg, args) => {
 			
 			if(cooldown.has(msg.author.id)) return msg.channel.send("Ah yes, joining a second after leaving, how about no.")
 			if(msg.author.bot) return;
-			if(!msg.member.roles.find(r => r.name === "EvilCraft")) return;
+			if(!msg.member.roles.cache.some(r => r.name === "EvilCraft")) return;
 			
 		  let userdata = data.findOne().byID(msg.author.id)
 			
