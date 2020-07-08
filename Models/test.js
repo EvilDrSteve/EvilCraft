@@ -5,4 +5,10 @@ const playerSchema = mongoose.Schema({
   Name: String,
 });
 
+playerSchema.query.byName = function(name) {
+  return this.where({
+    Name: new RegExp(name, 'i')
+  });
+};
+
 module.exports = mongoose.model("Player", playerSchema);

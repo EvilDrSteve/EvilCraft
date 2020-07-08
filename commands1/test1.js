@@ -7,13 +7,13 @@ const Data = require('../Models/test.js')
 
 module.exports.run = async (bot, msg, args) => {
   var test = Data.find().byName(msg.author.tag)
-  console.log(test)
+  console.table(test)
   //msg.channel.send(test)
 }
 
 
-  
-  	 module.exports.config = {
-  	   name: "test",
-  	   aliases: ["t"]
-  	 }
+
+module.exports.config = {
+  name: "test1",
+  aliases: ["t1"]
+}
