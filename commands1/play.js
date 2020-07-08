@@ -43,7 +43,7 @@ module.exports.run = async (bot, msg, args) => {
 	.setTitle(`${userdata1.gt}`)
 //	.setDescription("**Joined the Realm**")
  .addField('Playing For', "0 Minutes")
-	.setThumbnail(user.avatarURL)
+	.setThumbnail(user.avatarURL())
 	.setFooter(`AKA ${user.username}`, user.avatarURL)
 	.setTimestamp()
 	 bot.guilds.cache.get(config.SERVER_ID).channels.cache.get("711048304502374493").send(embed).then(m => {
@@ -66,7 +66,7 @@ module.exports.run = async (bot, msg, args) => {
   	 .setColor(config.RED)
 	 	 .setTitle(`${userdata.gt}`)
 	 	 .addField('Playing for', `${userdata.count} Minutes`)
-	.setThumbnail(user.avatarURL)
+	.setThumbnail(user.avatarURL())
 	.setFooter(`AKA ${user.username}`, user.avatarURL)
 	.setTimestamp()
 	
