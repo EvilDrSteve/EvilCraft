@@ -17,7 +17,7 @@ module.exports.run = async (bot, msg, args) => {
 			
 			if(!userstuff){
 				var userdata = new Data ({
-				  _id: mongoose.Types.ObjectId,
+				  _id: mongoose.Types.ObjectId(),
 				  ID: msg.author.id,
 				  ingame: 0,
 				  gt: msg.author.username,
