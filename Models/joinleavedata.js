@@ -2,9 +2,9 @@ const mongoose = require("mongoose");
 
 const DataSchema = mongoose.Schema({
   _id: mongoose.Schema.Types.ObjectId,
-  ID: Number,
+  ID: String,
   ingame: Number,
-  message: Number,
+  message: String,
   gt: String,
   count: Number
 });
