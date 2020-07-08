@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
 const config = require("../config.json")
+const mongoose = require('mongoose')
 const fs = require('fs')
 const cooldown = new Set()
 
@@ -13,72 +14,66 @@ module.exports.run = async (bot, msg, args) => {
 			if(msg.author.bot) return;
 			if(!msg.member.roles.find(r => r.name === "EvilCraft")) return;
 			
-				if(!data[msg.author.id]){
-				data[msg.author.id] = {
-					ingame: 0,
-					message: 0,
-					gt: 0,
-					count: 0
-				}
-			}
+		  let userdata = await data.findOne().byID(msg.author.id)
 			
-			if(!data["playing"]){
-				data["playing"] = {
-					 now: 0
-				}
+			if(!userdata){
+				let user = new Data ({
+				  _id: mongoose.Types.ObjectId,
+				  ID: msg.author.id,
+				  ingame: 0,
+				  gt: msg.author.username,
+				  count: 0
+				})
+				await user.save()
+				console.log(data.findOne().byID(msg.author.id))
 			}
 			
 				
 	 let user = msg.author
 			channel = msg.channel.name
-			if(data[user.id].ingame !== 0) return msg.channel.send("You are already in a game!")
+			if(userdata.ingame !== 0) return msg.channel.send("You are already in a game!")
 			
-	if(data[user.id].gt == 0) {
-		data[user.id].gt = user.username
-		}
 			
 	let count = 0
 	let min = 0
-	data[user.id].count = 0
+	userdata.count = 0
 	var embed = new Discord.RichEmbed()
  .setColor(config.RED)
-	.setTitle(`${data[user.id].gt}`)
+	.setTitle(`${userdata.gt}`)
 //	.setDescription("**Joined the Realm**")
  .addField('Playing For', "0 Minutes")
 	.setThumbnail(user.avatarURL)
 	.setFooter(`AKA ${user.username}`, user.avatarURL)
 	.setTimestamp()
 	 bot.guilds.get(config.SERVER_ID).channels.get("711048304502374493").send(embed).then(m => {
-			 	data[user.id].ingame = 1
-			 	data[user.id].message = m.id
-			 	data["playing"].now = data["playing"].now + 1
+			 	userdata.ingame = 1
+			 	userdata.message = m.id
+			// 	data["playing"].now = data["playing"].now + 1
 			 	
-			 					fs.writeFileSync("./playdata.json", JSON.stringify(data), (err=>{
-						if(err) return console.log(err)
-					}))
+			 await userdata.save()
 				
 				
 				const counter = setInterval(() => {//if(data[user.id].ingame == 1) {
-					let rawdata = fs.readFileSync('./playdata.json'); let data = JSON.parse(rawdata);
-					if(data[user.id].ingame == 0) return clearInterval(counter);
+					let rawdata = fs.readFileSync('./playdata.json'); let data = JSON.parse(rawdata)
+					let userdata = Data.findOne().byID(msg.author.id)
+					if(userdata.ingame == 0) return clearInterval(counter);
 					 console.log(data);
-	 	 console.log(data[user.id].count)
+	 	 console.log(userdata.count)
 	 //	 count++
-	 	 data[user.id].count++
+	 	 userdata.count++
 	 	 var embed1 = new Discord.RichEmbed()
   	 .setColor(config.RED)
-	 	 .setTitle(`${data[user.id].gt}`)
-	 	 .addField('Playing for', `${data[user.id].count} Minutes`)
+	 	 .setTitle(`${userdata.gt}`)
+	 	 .addField('Playing for', `${userdata.count} Minutes`)
 	.setThumbnail(user.avatarURL)
 	.setFooter(`AKA ${user.username}`, user.avatarURL)
 	.setTimestamp()
 	
-console.log(data[user.id])
-	bot.guilds.get(config.SERVER_ID).channels.get("711048304502374493").fetchMessage(data[user.id].message).then(e => e.edit(embed1))
+console.log(userdata)
+	bot.guilds.get(config.SERVER_ID).channels.get("711048304502374493").fetchMessage(userdata.message).then(e => e.edit(embed1))
 	
-	fs.writeFileSync("./playdata.json", JSON.stringify(data), (err=>{
-						if(err) return console.log(err)
-					}))
+	
+	await userdata.save()
 	 	 //}
 	 	/*  else {
 	 	 	 clearInterval(counter)
@@ -89,15 +84,7 @@ console.log(data[user.id])
 	 	 	 
 	 	 	  }*/
 	 	 }, 1000 * 60)
-					bot.channels.get("712130741865283605").setName(`Now Playing: ${data["playing"].now}`)
-					
-if(data["playing"].now <= 1)	{
-bot.user.setActivity(`with ${data["playing"].now} Person`);
-}else {
-	bot.user.setActivity(`with ${data["playing"].now} People`);
-}
 					})
-					console.log(data)
 					
 					cooldown.add(msg.author.id);
 					setTimeout(() => {
