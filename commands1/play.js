@@ -8,13 +8,11 @@ module.exports.run = async (bot, msg, args) => {
 			
 			if(!msg.content.startsWith(config.PREFIX)) return
 			
-			let rawdata = fs.readFileSync('./playdata.json'); let data = JSON.parse(rawdata); console.log(data);
-			
 			if(cooldown.has(msg.author.id)) return msg.channel.send("Ah yes, joining a second after leaving, how about no.")
 			if(msg.author.bot) return;
 			if(!msg.member.roles.cache.some(r => r.name === "EvilCraft")) return;
 			
-		  let userdata = data.findOne().byID(msg.author.id)
+		  let userdata = Data.findOne().byID(msg.author.id)
 			
 			if(!userdata){
 				let user = new Data ({
@@ -25,7 +23,7 @@ module.exports.run = async (bot, msg, args) => {
 				  count: 0
 				})
 				 user.save()
-				console.log(data.findOne().byID(msg.author.id))
+				console.log(Data.findOne().byID(msg.author.id))
 			}
 			
 				
@@ -54,7 +52,7 @@ module.exports.run = async (bot, msg, args) => {
 				
 				
 				const counter = setInterval(() => {//if(data[user.id].ingame == 1) {
-					let rawdata = fs.readFileSync('./playdata.json'); let data = JSON.parse(rawdata)
+			
 					let userdata = Data.findOne().byID(msg.author.id)
 					if(userdata.ingame == 0) return clearInterval(counter);
 					 console.log(data);
