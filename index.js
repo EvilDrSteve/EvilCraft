@@ -1,12 +1,25 @@
 const Discord = require('discord.js');
-
 const bot = new Discord.Client();
-
 const config = require("./config.json");
-
-//const PREFIX = "!";
-
 const fs = require('fs');
+
+const mongoose = require('mongoose');
+mongoose.connect(process.env.MLAB, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  })
+  .then(() =>
+    console.log('MongoDB connected...'))
+  .catch(err => console.log(err));
+
+var db = mongoose.connection;
+
+db.on("error", console.error.bind(console, "connection error:"));
+
+db.once("open", function() {
+  console.log("Connection Successful!");
+});
+
 bot.commands = new Discord.Collection();
 bot.aliases = new Discord.Collection();
 
