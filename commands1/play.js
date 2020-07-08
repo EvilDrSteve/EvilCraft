@@ -3,7 +3,7 @@ const config = require("../config.json")
 const mongoose = require('mongoose')
 const fs = require('fs')
 const cooldown = new Set()
-const Data = require('./Models/joinleavedata.js')
+const Data = require('../Models/joinleavedata.js')
 
 module.exports.run = async (bot, msg, args) => {
 			
