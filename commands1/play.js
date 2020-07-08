@@ -53,6 +53,12 @@ module.exports.run = async (bot, msg, args) => {
 			 	
 			  userdata1.save()
 				
+				let online = await Data.find().byIngame()
+				onlineplayers = online.reduce((total, i) => {
+				  return i.ingame + total
+				}, 0)
+				console.log(onlineplayers)
+				bot.channels.cache.get("712130741865283605").setName(`Now Playing: ${onlineplayers}`)
 				
 				const counter = setInterval(async () => {//if(data[user.id].ingame == 1) {
 			
@@ -86,14 +92,7 @@ console.log(userdata)
 	 	 	  }*/
 	 	 }, 1000 * 60)
 					})
-					
-		let online = await Data.find().byIngame()
-		onlineplayers = online.reduce((total, i) => {
-		  return i.ingame + total
-		}, 0)
-		console.log(onlineplayers)
-		//bot.channels.cache.get("712130741865283605").setName(`Now Playing: ${onlineplayers}`)
-					
+				
 					cooldown.add(msg.author.id);
 					setTimeout(() => {
 						cooldown.delete(msg.author.id)
