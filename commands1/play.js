@@ -28,7 +28,7 @@ module.exports.run = async (bot, msg, args) => {
 			
 				
 	 let user = msg.author
-	 var userdata1 = await Data.findOne().byID(msg.author.id))
+	 var userdata1 = await Data.findOne().byID(msg.author.id)
 			channel = msg.channel.name
 			if(userdata1.ingame !== 0) return msg.channel.send("You are already in a game!")
 			
