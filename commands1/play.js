@@ -46,7 +46,7 @@ module.exports.run = async (bot, msg, args) => {
 	.setThumbnail(user.avatarURL)
 	.setFooter(`AKA ${user.username}`, user.avatarURL)
 	.setTimestamp()
-	 bot.guilds.get(config.SERVER_ID).channels.get("711048304502374493").send(embed).then(m => {
+	 bot.guilds.cache.get(config.SERVER_ID).channels.cache.get("711048304502374493").send(embed).then(m => {
 			 	userdata1.ingame = 1
 			 	userdata1.message = m.id
 			// 	data["playing"].now = data["playing"].now + 1
@@ -71,7 +71,7 @@ module.exports.run = async (bot, msg, args) => {
 	.setTimestamp()
 	
 console.log(userdata)
-	bot.guilds.get(config.SERVER_ID).channels.get("711048304502374493").fetchMessage(userdata.message).then(e => e.edit(embed1))
+	bot.guilds.cache.get(config.SERVER_ID).channels.cache.get("711048304502374493").fetchMessage(userdata.message).then(e => e.edit(embed1))
 	
 	
 	 userdata.save()
