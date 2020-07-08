@@ -15,4 +15,4 @@ DataSchema.query.byID = function(id) {
   });
 };
 
-module.exports = mongoose.model("Data", dataSchema);
+module.exports = mongoose.model("Data", DataSchema);
