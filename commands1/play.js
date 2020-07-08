@@ -23,7 +23,7 @@ module.exports.run = async (bot, msg, args) => {
 				  gt: msg.author.username,
 				  count: 0
 				})
-				 user.save()
+				 userdata.save()
 				console.log(Data.findOne().byID(msg.author.id))
 			}
 			
