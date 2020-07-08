@@ -56,7 +56,7 @@ module.exports.run = async (bot, msg, args) => {
 				
 				const counter = setInterval(() => {//if(data[user.id].ingame == 1) {
 			
-					userdata = Data.findOne().byID(msg.author.id)
+					userdata = await Data.findOne().byID(msg.author.id)
 					if(userdata.ingame == 0) return clearInterval(counter);
 					 console.log(userdata);
 	 	 console.log(userdata.count)
@@ -73,8 +73,8 @@ module.exports.run = async (bot, msg, args) => {
 console.log(userdata)
 	bot.guilds.cache.get(config.SERVER_ID).channels.cache.get("711048304502374493").messages.fetch(userdata.message).then(e => e.edit(embed1))
 	
-	
-	 userdata.save()
+	 await userdata.save()
+	 
 	 	 //}
 	 	/*  else {
 	 	 	 clearInterval(counter)
