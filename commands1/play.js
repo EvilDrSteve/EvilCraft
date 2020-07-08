@@ -51,7 +51,7 @@ module.exports.run = async (bot, msg, args) => {
 			 	userdata1.message = m.id
 			// 	data["playing"].now = data["playing"].now + 1
 			 	
-			  userdata1.save()
+			 await userdata1.save()
 				
 				let online = await Data.find().byIngame()
 				onlineplayers = online.reduce((total, i) => {
