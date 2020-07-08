@@ -6,7 +6,7 @@ const cooldown = new Set()
 const Player = require('../Models/test.js')
 
 module.exports.run = async (bot, msg, args) => {
-  var test = Players.find().byName(msg.author.tag)
+  var test = await Player.find().byName(msg.author.tag)
   console.table(test)
   //msg.channel.send(test)
 }
