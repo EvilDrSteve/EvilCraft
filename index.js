@@ -23,6 +23,9 @@ db.once("open", function() {
 bot.commands = new Discord.Collection();
 bot.aliases = new Discord.Collection();
 
+
+const Player = require('./Models/test.js');
+
 fs.readdir("./commands1", (err, files) => {
 
   if (err) console.log(err)
@@ -56,6 +59,14 @@ bot.on('message', msg => {
 
   let commandfile = bot.commands.get(cmd.slice(prefix.length)) || bot.commands.get(bot.aliases.get(cmd.slice(prefix.length)))
   if (commandfile) commandfile.run(bot, msg, args)
+  
+  const newPlayer = new Player({
+    _id: mongoose.Types.ObjectId(),
+    Name: msg.author.tag,
+  });
+  await newPlayer.save()
+  console.log(`New Player **${newPlayer.Name}**`)
+  }
 })
 
 
