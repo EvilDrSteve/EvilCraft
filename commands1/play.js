@@ -71,7 +71,7 @@ module.exports.run = async (bot, msg, args) => {
 	.setTimestamp()
 	
 console.log(userdata)
-	bot.guilds.cache.get(config.SERVER_ID).channels.cache.get("711048304502374493").fetchMessage(userdata.message).then(e => e.edit(embed1))
+	bot.guilds.cache.get(config.SERVER_ID).channels.cache.get("711048304502374493").messages.fetch(userdata.message).then(e => e.edit(embed1))
 	
 	
 	 userdata.save()
