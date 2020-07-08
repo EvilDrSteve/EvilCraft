@@ -1,26 +1,15 @@
 {
-
-  "name": "EvilCraftRealm",
-
-  "description": "by EvilDrSteve",
-
+  "name": "sharoo",
+  "description": "by Sami",
   "version": "0.0.0",
-
   "main": "index.js",
-
   "scripts": {
-
     "start": "node index.js"
-
   },
-
   "dependencies": {
-
     "discord.js": "^11.4.0",
-
-     "request": "2.81.0"
-
-
+    "mongoose": "^5.9.20",
+    "mongoose-error": "^1.0.1",
+    "request": "2.81.0"
   }
-
 }
