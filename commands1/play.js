@@ -13,7 +13,7 @@ module.exports.run = async (bot, msg, args) => {
 			if(msg.author.bot) return;
 			if(!msg.member.roles.cache.some(r => r.name === "EvilCraft")) return;
 			
-		  let userstuff = Data.findOne().byID(msg.author.id)
+		  let userstuff = await Data.findOne().byID(msg.author.id)
 			
 			if(!userstuff){
 				var userdata = new Data ({
@@ -23,13 +23,13 @@ module.exports.run = async (bot, msg, args) => {
 				  gt: msg.author.username,
 				  count: 0
 				})
-				 userdata.save()
+				 await userdata.save()
 				console.log(Data.findOne().byID(msg.author.id))
 			}
 			
 				
 	 let user = msg.author
-	 var userdata1 = Data.findOne().byID(msg.author.id)
+	 var userdata1 = await Data.findOne().byID(msg.author.id)
 	 console.log(userdata1)
 			channel = msg.channel.name
 			if(userdata1.ingame !== 0) return msg.channel.send("You are already in a game!")
