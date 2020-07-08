@@ -13,10 +13,10 @@ module.exports.run = async (bot, msg, args) => {
 			if(msg.author.bot) return;
 			if(!msg.member.roles.cache.some(r => r.name === "EvilCraft")) return;
 			
-		  let userdata = Data.findOne().byID(msg.author.id)
+		  let userstuff = Data.findOne().byID(msg.author.id)
 			
-			if(!userdata){
-				let user = new Data ({
+			if(!userstuff){
+				var userdata = new Data ({
 				  _id: mongoose.Types.ObjectId,
 				  ID: msg.author.id,
 				  ingame: 0,
@@ -54,7 +54,7 @@ module.exports.run = async (bot, msg, args) => {
 				
 				const counter = setInterval(() => {//if(data[user.id].ingame == 1) {
 			
-					let userdata = Data.findOne().byID(msg.author.id)
+					userdata = Data.findOne().byID(msg.author.id)
 					if(userdata.ingame == 0) return clearInterval(counter);
 					 console.log(data);
 	 	 console.log(userdata.count)
