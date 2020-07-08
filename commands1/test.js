@@ -1,4 +1,4 @@
-t Discord = require('discord.js');
+const Discord = require('discord.js');
 const config = require("../config.json")
 const mongoose = require('mongoose')
 const fs = require('fs')
