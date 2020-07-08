@@ -29,27 +29,28 @@ module.exports.run = async (bot, msg, args) => {
 			
 				
 	 let user = msg.author
+	 var userdata1 = Data.findOne().byID(msg.author.id)
 			channel = msg.channel.name
-			if(userdata.ingame !== 0) return msg.channel.send("You are already in a game!")
+			if(userdata1.ingame !== 0) return msg.channel.send("You are already in a game!")
 			
 			
 	let count = 0
 	let min = 0
-	userdata.count = 0
+	userdata1.count = 0
 	var embed = new Discord.RichEmbed()
  .setColor(config.RED)
-	.setTitle(`${userdata.gt}`)
+	.setTitle(`${userdata1.gt}`)
 //	.setDescription("**Joined the Realm**")
  .addField('Playing For', "0 Minutes")
 	.setThumbnail(user.avatarURL)
 	.setFooter(`AKA ${user.username}`, user.avatarURL)
 	.setTimestamp()
 	 bot.guilds.get(config.SERVER_ID).channels.get("711048304502374493").send(embed).then(m => {
-			 	userdata.ingame = 1
-			 	userdata.message = m.id
+			 	userdata1.ingame = 1
+			 	userdata1.message = m.id
 			// 	data["playing"].now = data["playing"].now + 1
 			 	
-			  userdata.save()
+			  userdata1.save()
 				
 				
 				const counter = setInterval(() => {//if(data[user.id].ingame == 1) {
