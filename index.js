@@ -48,7 +48,7 @@ bot.on('ready', () => {
   console.log("Now online")
 })
 
-bot.on('message', msg => {
+bot.on('message', async (msg) => {
   if (msg.author.bot || msg.channel.type == "dm") return;
 
   let prefix = config.PREFIX
