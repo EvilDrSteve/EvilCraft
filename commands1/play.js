@@ -14,7 +14,7 @@ module.exports.run = async (bot, msg, args) => {
 			if(msg.author.bot) return;
 			if(!msg.member.roles.find(r => r.name === "EvilCraft")) return;
 			
-		  let userdata = await data.findOne().byID(msg.author.id)
+		  let userdata = data.findOne().byID(msg.author.id)
 			
 			if(!userdata){
 				let user = new Data ({
@@ -24,7 +24,7 @@ module.exports.run = async (bot, msg, args) => {
 				  gt: msg.author.username,
 				  count: 0
 				})
-				await user.save()
+				 user.save()
 				console.log(data.findOne().byID(msg.author.id))
 			}
 			
@@ -50,7 +50,7 @@ module.exports.run = async (bot, msg, args) => {
 			 	userdata.message = m.id
 			// 	data["playing"].now = data["playing"].now + 1
 			 	
-			 await userdata.save()
+			  userdata.save()
 				
 				
 				const counter = setInterval(() => {//if(data[user.id].ingame == 1) {
@@ -73,7 +73,7 @@ console.log(userdata)
 	bot.guilds.get(config.SERVER_ID).channels.get("711048304502374493").fetchMessage(userdata.message).then(e => e.edit(embed1))
 	
 	
-	await userdata.save()
+	 userdata.save()
 	 	 //}
 	 	/*  else {
 	 	 	 clearInterval(counter)
