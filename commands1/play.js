@@ -38,7 +38,7 @@ module.exports.run = async (bot, msg, args) => {
 	let count = 0
 	let min = 0
 	userdata1.count = 0
-	var embed = new Discord.RichEmbed()
+	var embed = new Discord.MessageEmbed()
  .setColor(config.RED)
 	.setTitle(`${userdata1.gt}`)
 //	.setDescription("**Joined the Realm**")
@@ -62,7 +62,7 @@ module.exports.run = async (bot, msg, args) => {
 	 	 console.log(userdata.count)
 	 //	 count++
 	 	 userdata.count++
-	 	 var embed1 = new Discord.RichEmbed()
+	 	 var embed1 = new Discord.MessageEmbed()
   	 .setColor(config.RED)
 	 	 .setTitle(`${userdata.gt}`)
 	 	 .addField('Playing for', `${userdata.count} Minutes`)
