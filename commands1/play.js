@@ -58,7 +58,7 @@ module.exports.run = async (bot, msg, args) => {
 			
 					userdata = Data.findOne().byID(msg.author.id)
 					if(userdata.ingame == 0) return clearInterval(counter);
-					 console.log(data);
+					 console.log(userdata);
 	 	 console.log(userdata.count)
 	 //	 count++
 	 	 userdata.count++
