@@ -87,7 +87,11 @@ console.log(userdata)
 	 	 }, 1000 * 60)
 					})
 					
-		let online = await Data.find().byIngame
+		let online = await Data.find().byIngame()
+		online.reduce((total, i) => {
+		  return i.ingame + total
+		})
+		bot.channels.cache.get("712130741865283605").setName(`Now Playing: ${online}`)
 					
 					cooldown.add(msg.author.id);
 					setTimeout(() => {
