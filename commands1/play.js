@@ -87,6 +87,8 @@ console.log(userdata)
 	 	 }, 1000 * 60)
 					})
 					
+		let online = await Data.find().byIngame
+					
 					cooldown.add(msg.author.id);
 					setTimeout(() => {
 						cooldown.delete(msg.author.id)

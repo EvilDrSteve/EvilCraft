@@ -15,4 +15,10 @@ DataSchema.query.byID = function(id) {
   });
 };
 
+DataSchema.query.byIngame = function() {
+  return this.where({
+    ID: new RegExp(1, 'i')
+  });
+};
+
 module.exports = mongoose.model("Data", DataSchema);
