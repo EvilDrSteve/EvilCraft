@@ -24,13 +24,11 @@ module.exports.run = async (bot, msg, args) => {
 				  count: 0
 				})
 				 await userdata.save()
-				console.log(Data.findOne().byID(msg.author.id))
 			}
 			
 				
 	 let user = msg.author
-	 var userdata1 = await Data.findOne().byID(msg.author.id)
-	 console.log(userdata1)
+	 var userdata1 = await Data.findOne().byID(msg.author.id))
 			channel = msg.channel.name
 			if(userdata1.ingame !== 0) return msg.channel.send("You are already in a game!")
 			
@@ -53,19 +51,15 @@ module.exports.run = async (bot, msg, args) => {
 			 	
 			 await userdata1.save()
 				
-				let online = await Data.find().byIngame()
-				onlineplayers = online.reduce((total, i) => {
-				  return i.ingame + total
-				}, 0)
-				console.log(onlineplayers)
+				let online = await Data.find({ingame: 1})
+				onlineplayers = online.length
+
 				bot.channels.cache.get("712130741865283605").setName(`Now Playing: ${onlineplayers}`)
 				
 				const counter = setInterval(async () => {//if(data[user.id].ingame == 1) {
 			
 					userdata = await Data.findOne().byID(msg.author.id)
 					if(userdata.ingame == 0) return clearInterval(counter);
-					 console.log(userdata);
-	 	 console.log(userdata.count)
 	 //	 count++
 	 	 userdata.count++
 	 	 var embed1 = new Discord.MessageEmbed()
@@ -76,7 +70,6 @@ module.exports.run = async (bot, msg, args) => {
 	.setFooter(`AKA ${user.username}`, user.avatarURL)
 	.setTimestamp()
 	
-console.log(userdata)
 	bot.guilds.cache.get(config.SERVER_ID).channels.cache.get("711048304502374493").messages.fetch(userdata.message).then(e => e.edit(embed1))
 	
 	 await userdata.save()
