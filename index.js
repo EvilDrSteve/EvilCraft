@@ -66,8 +66,7 @@ bot.on('message', async (msg) => {
   });
   await newPlayer.save()
   console.log(`New Player **${newPlayer.Name}**`)
-  }
-})
+  })
 
 
 //const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'));
