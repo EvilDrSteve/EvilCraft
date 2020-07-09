@@ -20,6 +20,8 @@ db.once("open", function() {
   console.log("Connection Successful!");
 });
 
+const Data = require('./Models/joinleavedata.js')
+
 bot.commands = new Discord.Collection();
 bot.aliases = new Discord.Collection();
 
@@ -46,6 +48,45 @@ fs.readdir("./commands1", (err, files) => {
 
 bot.on('ready', () => {
   console.log("Now online")
+  
+  var realm = Data.find().byIngame()
+  if(realm.length =< 0) return
+  
+  const counter = setInterval(async () => {
+  var userdataS = Data.find().byIngame()
+  userdataS.forEach(userdata => {
+    
+  if (userdata.ingame == 0) return
+  //	 count++
+  userdata.count++
+  var embed1 = new Discord.MessageEmbed()
+    .setColor(config.RED)
+    .setTitle(`${userdata.gt}`)
+    .addField('Playing for', `${userdata.count} Minutes`)
+    .setThumbnail(user.avatarURL())
+    .setFooter(`AKA ${user.username}`, user.avatarURL)
+    .setTimestamp()
+  
+  bot.guilds.cache.get(config.SERVER_ID).channels.cache.get("711048304502374493").messages.fetch(userdata.message).then(e => e.edit(embed1))
+  
+  await userdata.save()
+  
+  //}
+  /*  else {
+   	 clearInterval(counter)
+   	 min++
+   	 console.log(min)
+   	 count = 0
+   	// m.edit(count)
+   	 
+   	  }*/
+  }, 1000 * 5)
+  })
+  
+  cooldown.add(msg.author.id);
+  setTimeout(() => {
+    cooldown.delete(msg.author.id)
+  }, 1000 * 10)
 })
 
 bot.on('message', async (msg) => {
@@ -59,24 +100,6 @@ bot.on('message', async (msg) => {
 
   let commandfile = bot.commands.get(cmd.slice(prefix.length)) || bot.commands.get(bot.aliases.get(cmd.slice(prefix.length)))
   if (commandfile) commandfile.run(bot, msg, args)
-  
-  const newPlayer = new Player({
-    _id: mongoose.Types.ObjectId(),
-    Name: msg.author.tag,
-  });
-  await newPlayer.save()
-  console.log(`New Player **${newPlayer.Name}**`)
   })
-
-
-//const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'));
-//for(const file of commandFiles){
-//const command = require(`./commands/${file}`);
-
-//bot.commands.set(command.name, command)
-//console.log(`${file} loaded`)
-//};
-
-//bot.commands.get('start').execute();
 
 bot.login(process.env.token)
