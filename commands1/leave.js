@@ -17,7 +17,7 @@ module.exports.run = async (bot, msg, args) => {
   
     if (user.ingame !== 1) return msg.channel.send("You cant leave a game if you havent joined one!")
   
-    bot.guilds.cache.get(config.SERVER_ID).channels.cache.get("711048304502374493").fetchMessage(user.message).then(m => m.delete(0))
+    bot.guilds.cache.get(config.SERVER_ID).channels.cache.get("711048304502374493").messages.fetch(user.message).then(m => m.delete(0))
   
     user.ingame = 0
     user.message = 0
