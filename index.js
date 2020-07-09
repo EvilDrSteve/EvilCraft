@@ -50,7 +50,7 @@ bot.on('ready', () => {
   console.log("Now online")
   
   var realm = Data.find().byIngame()
-  if(realm.length =< 0) return
+  if(realm.length <= 0) return
   
   const counter = setInterval(async () => {
   var userdataS = Data.find().byIngame()
