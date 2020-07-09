@@ -56,6 +56,7 @@ bot.on('ready', async () => {
     bot.channels.cache.get("712130741865283605").setName(`Now Playing: ${onlineplayers}`).catch(err => {
       console.log(err)
     })
+    console.log("realm trigger")
     return
   }
   //(console.log("length 0"))
