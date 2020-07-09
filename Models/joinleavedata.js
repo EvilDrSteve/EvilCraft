@@ -17,7 +17,7 @@ DataSchema.query.byID = function(id) {
 
 DataSchema.query.byIngame = function(v) {
   return this.where({
-    ingame: new RegExp(v, 'i')
+    ingame: v
   });
 };
 
