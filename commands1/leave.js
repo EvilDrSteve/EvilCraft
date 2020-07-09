@@ -25,9 +25,10 @@ module.exports.run = async (bot, msg, args) => {
     
     await user.save()
     
-    realm = Data.find().byIngame()
-    online = realm.length
-    bot.channels.cache.get("712130741865283605").setName(`Now Playing: ${online}`)
+    let online = await Data.find({ ingame: 1 })
+    onlineplayers = online.length
+    console.log(onlineplayers);
+    bot.channels.cache.get("712130741865283605").setName(`Now Playing: ${onlineplayers}`)
 }
 
 
