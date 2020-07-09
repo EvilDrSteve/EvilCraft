@@ -57,7 +57,7 @@ bot.on('ready', async () => {
   const counter = setInterval(async () => {
   var userdataS = await Data.find().byIngame(1)
   Array.from(userdataS).forEach(async (userdata) => {
-    user1 = bot.users.fetch(userdata.ID)
+    user1 = bot.guilds.cache.get(config.SERVER_ID).users.fetch(userdata.ID)
   //  console.log(userdata)
   if (userdata.ingame == 0) return
   //	 count++
