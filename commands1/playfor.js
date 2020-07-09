@@ -12,7 +12,7 @@ module.exports.run = async (bot, msg, args) => {
   var mention = msg.mentions.users.first()
   if (cooldown.has(mention)) return msg.channel.send("Ah yes, joining a second after leaving, how about no.")
   if (msg.author.bot) return;
-  if (!msg.mentions.members.first.roles.cache.some(r => r.name === "EvilCraft")) return;
+  //if (!msg.mentions.members.first.roles.cache.some(r => r.name === "EvilCraft")) return;
 
   let userstuff = await Data.findOne().byID(mention.id)
 
