@@ -67,7 +67,7 @@ bot.on('ready', async () => {
    bot.guilds.cache.get(config.SERVER_ID).channels.cache.get("712130741865283605").setName(`Now Playing: ${userdatas.length}`).catch(err => {
      console.log(err)
    })
-   if(userdatas.length <= 0) return clearInterval(counter)
+   
   Array.from(userdatas).forEach(async (userdata) => {
     user2 = bot.guilds.cache.get(config.SERVER_ID).members.cache.get(userdata.ID)
     user1 = user2.user
