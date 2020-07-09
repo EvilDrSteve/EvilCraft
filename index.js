@@ -76,6 +76,7 @@ bot.on('ready', async () => {
     if(err) {
       console.log("error")
     userdata.ingame = 0
+    continue
     }else {
       console.log("no error")
     }
