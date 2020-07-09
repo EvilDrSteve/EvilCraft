@@ -72,7 +72,8 @@ bot.on('ready', async () => {
     .setFooter(`AKA ${user1.username}`, user1.avatarURL)
     .setTimestamp()
     
-    let editMessage = bot.guilds.cache.get(config.SERVER_ID).channels.cache.get("711048304502374493").messages.fetch(userdata.message)
+    let editMessage = bot.guilds.cache.get(config.SERVER_ID).channels.cache.get("711048304502374493").messages.fetch(userdata.message).catch(err => {
+      if(err) return console.log("error"))
     if(!editMessage) {
       console.log("Message not found")
       userdata.ingame = 0
