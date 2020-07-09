@@ -74,7 +74,7 @@ bot.on('ready', async () => {
     
     bot.guilds.cache.get(config.SERVER_ID).channels.cache.get("711048304502374493").messages.fetch(userdata.message).then(e => {
       e.edit(embed1)
-    }).catch(err => {
+    }).catch(async (err) => {
       if(err) {
       console.log("error")
       userdata.ingame = 0
