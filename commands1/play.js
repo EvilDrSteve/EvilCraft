@@ -11,7 +11,7 @@ module.exports.run = async (bot, msg, args) => {
 		
 			if (msg.author.bot) return;
 			
-			if (!msg.member.roles.cache.some(r => r.name === "EvilCraft")) return;
+		//	if (!msg.member.roles.cache.some(r => r.name === "EvilCraft")) return;
 		
 			let userstuff = await Data.findOne().byID(msg.author.id)
 		
