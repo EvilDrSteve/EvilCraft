@@ -57,7 +57,9 @@ bot.on('ready', async () => {
  // var userdataS = await Data.find().byIngame(1)
   const counter = setInterval(async () => {
    var userdataS = await Data.find().byIngame(1)
-  Array.from(userdataS).forEach(async (userdata) => {
+  const array = Array.from(userdataS)
+  for(let i = 0; i < array.length; i ++){
+    userdata = array[i]
     user2 = bot.guilds.cache.get(config.SERVER_ID).members.cache.get(userdata.ID)
     user1 = user2.user
   //  console.log(userdata)
@@ -72,8 +74,6 @@ bot.on('ready', async () => {
     .setFooter(`AKA ${user1.username}`, user1.avatarURL)
     .setTimestamp()
     
-    if(!bot.guilds.cache.get(config.SERVER_ID).channels.cache.get("711048304502374493").messages.fetch(userdata.message)) return console.log("message not found")
-    
     bot.guilds.cache.get(config.SERVER_ID).channels.cache.get("711048304502374493").messages.fetch(userdata.message).then(e => {
       e.edit(embed1)
     }).catch(async (err) => {
@@ -83,6 +83,8 @@ bot.on('ready', async () => {
       await userdata.save()
       }
     })
+    
+    await userdata.save()
   //}
   /*  else {
    	 clearInterval(counter)
