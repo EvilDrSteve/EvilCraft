@@ -50,24 +50,8 @@ bot.on('ready', async () => {
   console.log("Now online")
   
   var realm = Data.find().byIngame()
-  //console.log("realm trigerred")
-  if(realm.length <= 0) {
-    onlineplayers = realm.length
-    bot.channels.cache.get("712130741865283605").setName(`Now Playing: ${onlineplayers}`).catch(err => {
-      console.log(err)
-    })
-    console.log("realm trigger")
-    return
-  }
-  //(console.log("length 0"))
-  
- // var userdataS = await Data.find().byIngame(1)
   const counter = setInterval(async () => {
    var userdatas = await Data.find().byIngame()
-   bot.guilds.cache.get(config.SERVER_ID).channels.cache.get("712130741865283605").setName(`Now Playing: ${userdatas.length}`).catch(err => {
-     console.log(err)
-   })
-   
   Array.from(userdatas).forEach(async (userdata) => {
     user2 = bot.guilds.cache.get(config.SERVER_ID).members.cache.get(userdata.ID)
     user1 = user2.user
