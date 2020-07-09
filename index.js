@@ -56,14 +56,14 @@ bot.on('ready', async () => {
   
  // var userdataS = await Data.find().byIngame(1)
   const counter = setInterval(async () => {
-   var userdataS = await Data.find().byIngame()
-   onlineplayers = userdataS.length
+   var userdatas = await Data.find().byIngame()
+   onlineplayers = userdatas.length
    console.log(onlineplayers);
    bot.channels.cache.get("712130741865283605").setName(`Now Playing: ${onlineplayers}`).catch(err => {
      console.log(err)
    })
-   if(userdataS.length <= 0) return clearInterval(counter)
-  Array.from(userdataS).forEach(async (userdata) => {
+   if(userdatas.length <= 0) return clearInterval(counter)
+  Array.from(userdatas).forEach(async (userdata) => {
     user2 = bot.guilds.cache.get(config.SERVER_ID).members.cache.get(userdata.ID)
     user1 = user2.user
   //  console.log(userdata)
