@@ -26,13 +26,14 @@ module.exports.run = async (bot, msg, args) => {
 			  await userdata.save()
 			}
 			
+			var userdata1 = await Data.findOne().byID(msg.author.id)
+			
 			if(userdata1.ingame !== 0) return msg.channel.send("You are already in a game!")
 			
 			if(cooldown.has(msg.author.id)) return msg.channel.send("Ah yes, joining a second after leaving, how about no.")
 			
 			
 	 let user = msg.author
-	 var userdata1 = await Data.findOne().byID(msg.author.id)
 			channel = msg.channel.name
 			
 	let count = 0
