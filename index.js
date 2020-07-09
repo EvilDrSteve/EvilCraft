@@ -46,7 +46,7 @@ fs.readdir("./commands1", (err, files) => {
   })
 })
 
-bot.on('ready', () => {
+bot.on('ready', async () => {
   console.log("Now online")
   
   var realm = Data.find().byIngame()
@@ -54,7 +54,7 @@ bot.on('ready', () => {
   
   const counter = setInterval(async () => {
   var userdataS = Data.find().byIngame()
-  userdataS.forEach(userdata => {
+  userdataS.forEach(async (userdata) => {
     
   if (userdata.ingame == 0) return
   //	 count++
@@ -83,10 +83,6 @@ bot.on('ready', () => {
   }, 1000 * 5)
   })
   
-  cooldown.add(msg.author.id);
-  setTimeout(() => {
-    cooldown.delete(msg.author.id)
-  }, 1000 * 10)
 })
 
 bot.on('message', async (msg) => {
