@@ -6,14 +6,12 @@ const cooldown = new Set()
 const Data = require('../Models/joinleavedata.js')
 
 module.exports.run = async (bot, msg, args) => {
-
+  
+  if (msg.author.bot) return;
   if (!msg.content.startsWith(config.PREFIX)) return
   if(!msg.mentions.users.first()) return
   var mention = msg.mentions.users.first()
-  if (cooldown.has(mention)) return msg.channel.send("Ah yes, joining a second after leaving, how about no.")
-  if (msg.author.bot) return;
-  //if (!msg.mentions.members.first.roles.cache.some(r => r.name === "EvilCraft")) return;
-
+  
   let userstuff = await Data.findOne().byID(mention.id)
 
   if (!userstuff) {
@@ -26,12 +24,19 @@ module.exports.run = async (bot, msg, args) => {
     })
     await userdata.save()
   }
-
-
+  
+  
   let user = mention
   var userdata1 = await Data.findOne().byID(mention.id)
   channel = msg.channel.name
-  if (userdata1.ingame !== 0) return msg.channel.send("You are already in a game!")
+  if (userdata1.ingame !== 0) return msg.channel.send("Already in a game!")
+  
+  if (cooldown.has(mention)) return msg.channel.send("on cooldown")
+  
+  //if (!msg.mentions.members.first.roles.cache.some(r => r.name === "EvilCraft")) return;
+
+  
+  
 
 
   let count = 0

@@ -8,30 +8,32 @@ const Data = require('../Models/joinleavedata.js')
 module.exports.run = async (bot, msg, args) => {
 			
 			if(!msg.content.startsWith(config.PREFIX)) return
+		
+			if (msg.author.bot) return;
 			
-			if(cooldown.has(msg.author.id)) return msg.channel.send("Ah yes, joining a second after leaving, how about no.")
-			if(msg.author.bot) return;
-			if(!msg.member.roles.cache.some(r => r.name === "EvilCraft")) return;
-			
-		  let userstuff = await Data.findOne().byID(msg.author.id)
-			
-			if(!userstuff){
-				var userdata = new Data ({
-				  _id: mongoose.Types.ObjectId(),
-				  ID: msg.author.id,
-				  ingame: 0,
-				  gt: msg.author.username,
-				  count: 0
-				})
-				 await userdata.save()
+			if (!msg.member.roles.cache.some(r => r.name === "EvilCraft")) return;
+		
+			let userstuff = await Data.findOne().byID(msg.author.id)
+		
+			if (!userstuff) {
+			  var userdata = new Data({
+			    _id: mongoose.Types.ObjectId(),
+			    ID: msg.author.id,
+			    ingame: 0,
+			    gt: msg.author.username,
+			    count: 0
+			  })
+			  await userdata.save()
 			}
 			
-				
+			if(userdata1.ingame !== 0) return msg.channel.send("You are already in a game!")
+			
+			if(cooldown.has(msg.author.id)) return msg.channel.send("Ah yes, joining a second after leaving, how about no.")
+			
+			
 	 let user = msg.author
 	 var userdata1 = await Data.findOne().byID(msg.author.id)
 			channel = msg.channel.name
-			if(userdata1.ingame !== 0) return msg.channel.send("You are already in a game!")
-			
 			
 	let count = 0
 	let min = 0

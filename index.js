@@ -85,7 +85,7 @@ bot.on('ready', async () => {
       }
     })
     
-    await userdata.save
+    await userdata.save()
   //}
   /*  else {
    	 clearInterval(counter)
