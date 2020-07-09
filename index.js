@@ -73,8 +73,9 @@ bot.on('ready', async () => {
     .setTimestamp()
     
     let editMessage = bot.guilds.cache.get(config.SERVER_ID).channels.cache.get("711048304502374493").messages.fetch(userdata.message).catch(err => {
-      if(err) return console.log("error"))
-    if(!editMessage) {
+      if(err) return console.log("error")})
+      
+      if(!editMessage) {
       console.log("Message not found")
       userdata.ingame = 0
     }else {
