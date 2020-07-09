@@ -51,12 +51,12 @@ module.exports.run = async (bot, msg, args) => {
 			 	
 			 await userdata1.save()
 				
-				/*let online = await Data.find({ingame: 1})
+				let online = await Data.find({ingame: 1})
 				onlineplayers = online.length
 				console.log(onlineplayers);
 				bot.channels.cache.get("712130741865283605").setName(`Now Playing: ${onlineplayers}`)
 				
-				const counter = setInterval(async () => {//if(data[user.id].ingame == 1) {
+			/*	const counter = setInterval(async () => {//if(data[user.id].ingame == 1) {
 			
 					userdata = await Data.findOne().byID(msg.author.id)
 					if(userdata.ingame == 0) return clearInterval(counter);
