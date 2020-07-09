@@ -25,7 +25,7 @@ module.exports.run = async (bot, msg, args) => {
     
     await user.save()
     
-    let online = await Data.find({ ingame: 1 })
+    let online = await Data.find().byIngame
     onlineplayers = online.length
     console.log(onlineplayers);
     bot.channels.cache.get("712130741865283605").setName(`Now Playing: ${onlineplayers}`)
