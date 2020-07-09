@@ -71,16 +71,12 @@ bot.on('ready', async () => {
     .setThumbnail(user1.displayAvatarURL())
     .setFooter(`AKA ${user1.username}`, user1.avatarURL)
     .setTimestamp()
-  
-  bot.guilds.cache.get(config.SERVER_ID).channels.cache.get("711048304502374493").messages.fetch(userdata.message).then(e => e.edit(embed1)).catch(async (err) => {
-    if(err) {
+  try {
+  bot.guilds.cache.get(config.SERVER_ID).channels.cache.get("711048304502374493").messages.fetch(userdata.message).then(e => e.edit(embed1))} catch(async (err)) {
       console.log("error")
     userdata.ingame = 0
-    await userdata.save()
-    }else {
-      console.log("no error")
+   // await userdata.save()
     }
-  })
   
   await userdata.save()
   
