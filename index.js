@@ -63,7 +63,7 @@ bot.on('ready', async () => {
  // var userdataS = await Data.find().byIngame(1)
   const counter = setInterval(async () => {
    var userdatas = await Data.find().byIngame()
-   bot.channels.cache.get("712130741865283605").setName(`Now Playing: ${userdatas.length}`).catch(err => {
+   bot.guilds.cache.get(config.SERVER_ID).channels.cache.get("712130741865283605").setName(`Now Playing: ${userdatas.length}`).catch(err => {
      console.log(err)
    })
    if(userdatas.length <= 0) return clearInterval(counter)
