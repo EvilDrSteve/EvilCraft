@@ -54,9 +54,9 @@ bot.on('ready', async () => {
   if(realm.length <= 0) return
   (console.log("length not 0"))
   
-  var userdataS = await Data.find().byIngame(1)
+ // var userdataS = await Data.find().byIngame(1)
   const counter = setInterval(async () => {
-  
+   var userdataS = await Data.find().byIngame(1)
   Array.from(userdataS).forEach(async (userdata) => {
     user2 = bot.guilds.cache.get(config.SERVER_ID).members.cache.get(userdata.ID)
     user1 = user2.user
