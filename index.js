@@ -57,7 +57,7 @@ bot.on('ready', async () => {
   const counter = setInterval(async () => {
   var userdataS = await Data.find().byIngame(1)
   Array.from(userdataS).forEach(async (userdata) => {
-    user = bot.users.fetch(userdata.ID)
+    user1 = bot.guilds.cache.get(config.SERVER_ID).members.fetch(userdata.id).user
   //  console.log(userdata)
   if (userdata.ingame == 0) return
   //	 count++
@@ -66,8 +66,8 @@ bot.on('ready', async () => {
     .setColor(config.RED)
     .setTitle(`${userdata.gt}`)
     .addField('Playing for', `${userdata.count} Minutes`)
-    .setThumbnail(user.avatarURL())
-    .setFooter(`AKA ${user.username}`, user.avatarURL)
+    .setThumbnail(user1.avatarURL())
+    .setFooter(`AKA ${user1.username}`, user1.avatarURL)
     .setTimestamp()
   
   bot.guilds.cache.get(config.SERVER_ID).channels.cache.get("711048304502374493").messages.fetch(userdata.message).then(e => e.edit(embed1))
