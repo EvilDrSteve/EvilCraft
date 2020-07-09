@@ -15,9 +15,9 @@ DataSchema.query.byID = function(id) {
   });
 };
 
-DataSchema.query.byIngame = function() {
+DataSchema.query.byIngame = function(v) {
   return this.where({
-    ingame: new RegExp(1, 'i')
+    ingame: new RegExp(v, 'i')
   });
 };
 
