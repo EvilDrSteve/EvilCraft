@@ -54,7 +54,7 @@ bot.on('ready', async () => {
   
   const counter = setInterval(async () => {
   var userdataS = Data.find().byIngame()
-  userdataS.forEach(async (userdata) => {
+  Array.from(userdataS).forEach(async (userdata) => {
     
   if (userdata.ingame == 0) return
   //	 count++
