@@ -84,7 +84,7 @@ bot.on('ready', async () => {
    	// m.edit(count)
    	 
    	  }*/
-  }, 1000 * 5)
+  }, 1000 * 30)
   })
   
 })
