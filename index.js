@@ -51,11 +51,12 @@ bot.on('ready', async () => {
   
   var realm = Data.find().byIngame()
   //console.log("realm trigerred")
-  if(realm.length <= 0) return {
+  if(realm.length <= 0) {
     onlineplayers = realm.length
     bot.channels.cache.get("712130741865283605").setName(`Now Playing: ${onlineplayers}`).catch(err => {
       console.log(err)
     })
+    return
   }
   //(console.log("length 0"))
   
