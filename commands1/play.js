@@ -83,9 +83,9 @@ module.exports.run = async (bot, msg, args) => {
 	 	 	// m.edit(count)
 	 	 	 
 	 	 	  }
-	 	 }, 1000 * 60)
+	 	 }, 1000 * 60)*/
 					})
-				*/
+				
 					cooldown.add(msg.author.id);
 					setTimeout(() => {
 						cooldown.delete(msg.author.id)
