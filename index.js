@@ -71,12 +71,15 @@ bot.on('ready', async () => {
     .setThumbnail(user1.displayAvatarURL())
     .setFooter(`AKA ${user1.username}`, user1.avatarURL)
     .setTimestamp()
-
-  bot.guilds.cache.get(config.SERVER_ID).channels.cache.get("711048304502374493").messages.fetch(userdata.message).then(e => e.edit(embed1)).catch(function (err) {
-    userdata.ingame = 0
-    console.log(err)
-  })
     
+    let editMessage = bot.guilds.cache.get(config.SERVER_ID).channels.cache.get("711048304502374493").messages.fetch(userdata.message)
+    if(!editMessage) {
+      console.log("Message not found")
+      userdata.ingame = 0
+    }else {
+    editMessage.edit(embed1)
+    console.log("Message edited")
+    }
   await userdata.save()
   
   //}
