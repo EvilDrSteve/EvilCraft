@@ -57,9 +57,7 @@ bot.on('ready', async () => {
  // var userdataS = await Data.find().byIngame(1)
   const counter = setInterval(async () => {
    var userdataS = await Data.find().byIngame(1)
-  const array = Array.from(userdataS)
-  for(let i = 0; i < array.length; i ++){
-    userdata = array[i]
+  Array.from(userdataS).forEach(async (userdata) => {
     user2 = bot.guilds.cache.get(config.SERVER_ID).members.cache.get(userdata.ID)
     user1 = user2.user
   //  console.log(userdata)
@@ -84,7 +82,7 @@ bot.on('ready', async () => {
       }
     })
     
-    await userdata.save()
+    await userdata.save
   //}
   /*  else {
    	 clearInterval(counter)
@@ -94,7 +92,7 @@ bot.on('ready', async () => {
    	// m.edit(count)
    	 
    	  }*/
-  }
+  })
   }, 1000 * 60)
   
 })
