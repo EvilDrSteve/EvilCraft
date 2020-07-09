@@ -7,7 +7,7 @@ const Data = require('../Models/test.js')
 
 module.exports.run = async (bot, msg, args) => {
   var test = await Data.find().byName(msg.author.tag)
-  console.log(test)
+ // console.log(test)
   //msg.channel.send(test)
 }
 

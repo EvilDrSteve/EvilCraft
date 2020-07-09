@@ -72,10 +72,10 @@ bot.on('ready', async () => {
     .setFooter(`AKA ${user1.username}`, user1.avatarURL)
     .setTimestamp()
   
-  bot.guilds.cache.get(config.SERVER_ID).channels.cache.get("711048304502374493").messages.fetch(userdata.message).then(e => e.edit(embed1)).catch(err => {
+  bot.guilds.cache.get(config.SERVER_ID).channels.cache.get("711048304502374493").messages.fetch(userdata.message).then(e => e.edit(embed1).catch(err => {
     console.log(err)
     userdata.ingame = 0
-  })
+  }))
   
   await userdata.save()
   
