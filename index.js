@@ -79,12 +79,10 @@ bot.on('ready', async () => {
       console.log("error")
       userdata.ingame = 0
       await userdata.save()
-      }else {
-        await userdata.save()
-        console.log("else")
       }
     })
   
+  console.log(userdata.gt)
   //}
   /*  else {
    	 clearInterval(counter)
