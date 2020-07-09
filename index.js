@@ -57,7 +57,7 @@ bot.on('ready', async () => {
   const counter = setInterval(async () => {
   var userdataS = await Data.find().byIngame(1)
   Array.from(userdataS).forEach(async (userdata) => {
-    user2 = bot.guilds.cache.get(config.SERVER_ID).members.cache.get(userdata.ID).user
+    user2 = bot.guilds.cache.get(config.SERVER_ID).members.cache.get(userdata.ID)
     user1 = user2.user
   //  console.log(userdata)
   if (userdata.ingame == 0) return
