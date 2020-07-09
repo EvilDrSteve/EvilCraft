@@ -11,7 +11,7 @@ module.exports.run = async (bot, msg, args) => {
   if (!msg.content.startsWith(config.PREFIX)) return
 
   if (msg.author.bot) return;
-  if (!msg.member.roles.cache.get(r => r.name === "EvilCraft")) return;
+ // if (!msg.member.roles.cache.get(r => r.name === "EvilCraft")) return;
 
     const user = await Data.findOne().byID(msg.author.id)
     if(!user) return msg.channel.send("Your data doesnt exist, please use the join command to fix")
