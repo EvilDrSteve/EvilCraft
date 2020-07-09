@@ -15,9 +15,9 @@ DataSchema.query.byID = function(id) {
   });
 };
 
-DataSchema.query.byIngame = function(v) {
+DataSchema.query.byIngame = function() {
   return this.where({
-    ingame: v
+    ingame: 1
   });
 };
 
