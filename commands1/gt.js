@@ -5,6 +5,14 @@ const fs = require('fs')
 const cooldown = new Set()
 const Data = require('../Models/joinleavedata.js')
 
+var illegal = "@&"
+var arr = illegal.split("")
+
+function check(n) {
+  for (let i = 0; i < arr.length; i++) {
+    return n === arr[i]
+  }
+}
 
 module.exports.run = async (bot, msg, args) => {
 
@@ -21,6 +29,8 @@ module.exports.run = async (bot, msg, args) => {
   if(gt.length > 15) return msg.channel.send("The maximum character limit for a GT is 15").then(m => {
     m.delete({ timeout: 1000 * 5 })
   })
+  
+  if(gt.some(check)) return msg.channel.send("Task Failed: Illegal Characters")
   user.gt = gt
 
   await user.save()
