@@ -5,7 +5,7 @@ const fs = require('fs')
 const cooldown = new Set()
 const Data = require('../Models/joinleavedata.js')
 
-var illegal = "-/:;()£&@\".,?!\'[]{}#%^*+=_\|~<>€$¥•"
+var illegal = "abcdefghijklmnopwrstuvwxyz1234567890_"
 var arr = illegal.split("")
 
 function check(n) {
@@ -30,8 +30,8 @@ module.exports.run = async (bot, msg, args) => {
     m.delete({ timeout: 1000 * 5 })
   })
   
-  chars = gt.split("")
-  if(chars.some(check)) return msg.channel.send("Task Failed: Illegal Characters")
+  chars = gt.toLowerCase().split("")
+  if(!chars.some(check)) return msg.channel.send("Task Failed: Illegal Characters")
   user.gt = gt
 
   await user.save()
