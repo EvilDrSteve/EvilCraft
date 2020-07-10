@@ -10,7 +10,7 @@ var arr = illegal.split("")
 
 function check(n) {
   for (let i = 0; i < arr.length; i++) {
-    return n === arr[i]
+    return n !== arr[i]
   }
 }
 
@@ -31,7 +31,7 @@ module.exports.run = async (bot, msg, args) => {
   })
   
   chars = gt.toLowerCase().split("")
-  if(!chars.some(check)) return msg.channel.send("Task Failed: Illegal Characters")
+  if(chars.some(check)) return msg.channel.send("Task Failed: Illegal Characters")
   user.gt = gt
 
   await user.save()
