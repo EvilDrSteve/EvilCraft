@@ -24,7 +24,12 @@ module.exports.run = async (bot, msg, args) => {
     const user = await Data.findOne().byID(msg.author.id)
     if(!user) return msg.channel.send("Your data doesnt exist, please use the join command to fix")
   if (!args[0]) return msg.channel.send(`Your GT is: **${user.gt}**`)
-  
+  if(args[0] == "filter") return {
+    args[0...].forEach(n => {
+      filter = filter + n
+    })
+    msg.channel.send("Added to the filter")
+  }
   let gt = args.join(" ")
   if(gt.length > 15) return msg.channel.send("The maximum character limit for a GT is 15").then(m => {
     m.delete({ timeout: 1000 * 5 })
