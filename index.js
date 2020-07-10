@@ -51,14 +51,11 @@ bot.on('ready', async () => {
   
   const counter = setInterval(async () => {
    var userdatas = await Data.find().byIngame()
-   //bot.user.setActivity(`Now Playing: ${userdatas.length}`);
-   bot.user.setStatus('available')
-   bot.user.setPresence({
-     game: {
-       name: "EvilCraftRealm",
-       type: "STREAMING"
-     }
-   });
+   if(userdatas.length <= 0){
+     bot.user.setActivity(`Alone`, {type: "PLAYING"})
+   }else {
+   bot.user.setActivity(`with ${userdatas.length} others`);
+   }
   Array.from(userdatas).forEach(async (userdata) => {
     user2 = bot.guilds.cache.get(config.SERVER_ID).members.cache.get(userdata.ID)
     user1 = user2.user
