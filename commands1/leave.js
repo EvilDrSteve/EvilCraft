@@ -15,6 +15,8 @@ module.exports.run = async (bot, msg, args) => {
     user = await Data.findOne().byID(msg.author.id)
     channel = msg.channel.name
   
+  if(!user) return msg.channel.send("Please try using the play command first")
+  
     if (user.ingame !== 1) return msg.channel.send("You cant leave a game if you havent joined one!")
   
     bot.guilds.cache.get(config.SERVER_ID).channels.cache.get("711048304502374493").messages.fetch(user.message).then(m => m.delete()).catch(err => {
