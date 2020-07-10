@@ -16,11 +16,16 @@ module.exports.run = async (bot, msg, args) => {
     const user = await Data.findOne().byID(msg.author.id)
     if(!user) return msg.channel.send("Your data doesnt exist, please use the join command to fix")
   if (!args[0]) return msg.channel.send(`Your GT is: **${user.gt}**`)
-
-  user.gt = args.join(" ")
+  
+  let gt = args.join(" ")
+  if(gt.length > 15) return msg.channel.send("The maximum character limit for a GT is 15").then(m => {
+    m.delete({ timeout: 1000 * 5 })
+  })
+  user.gt = gt
 
   await user.save()
   msg.channel.send(`Set your GT to __**${user.gt}**__`)
+  msg.delete( {timeout: 1000 * 5} )
 }
 
 
