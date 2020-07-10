@@ -49,7 +49,6 @@ fs.readdir("./commands1", (err, files) => {
 bot.on('ready', async () => {
   console.log("Now online")
   
-  var realm = Data.find().byIngame()
   const counter = setInterval(async () => {
    var userdatas = await Data.find().byIngame()
   Array.from(userdatas).forEach(async (userdata) => {

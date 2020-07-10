@@ -45,7 +45,6 @@ module.exports.run = async (bot, msg, args) => {
   var embed = new Discord.MessageEmbed()
     .setColor(config.RED)
     .setTitle(`${userdata1.gt}`)
-    //	.setDescription("**Joined the Realm**")
     .addField('Playing For', "0 Minutes")
     .setThumbnail(user.avatarURL())
     .setFooter(`AKA ${user.username}`, user.avatarURL)
@@ -53,43 +52,8 @@ module.exports.run = async (bot, msg, args) => {
   bot.guilds.cache.get(config.SERVER_ID).channels.cache.get("711048304502374493").send(embed).then(async (m) => {
     userdata1.ingame = 1
     userdata1.message = m.id
-    // 	data["playing"].now = data["playing"].now + 1
 
     await userdata1.save()
-
-    let online = await Data.find({ingame: 1})
-				onlineplayers = online.length
-				console.log(onlineplayers);
-				bot.channels.cache.get("712130741865283605").setName(`Now Playing: ${onlineplayers}`)
-				
-				/*const counter = setInterval(async () => {//if(data[user.id].ingame == 1) {
-			
-					userdata = await Data.findOne().byID(msg.author.id)
-					if(userdata.ingame == 0) return clearInterval(counter);
-	 //	 count++
-	 	 userdata.count++
-	 	 var embed1 = new Discord.MessageEmbed()
-  	 .setColor(config.RED)
-	 	 .setTitle(`${userdata.gt}`)
-	 	 .addField('Playing for', `${userdata.count} Minutes`)
-	.setThumbnail(user.avatarURL())
-	.setFooter(`AKA ${user.username}`, user.avatarURL)
-	.setTimestamp()
-	
-	bot.guilds.cache.get(config.SERVER_ID).channels.cache.get("711048304502374493").messages.fetch(userdata.message).then(e => e.edit(embed1))
-	
-	 await userdata.save()
-	 
-	 	 //}
-	 	/*  else {
-	 	 	 clearInterval(counter)
-	 	 	 min++
-	 	 	 console.log(min)
-	 	 	 count = 0
-	 	 	// m.edit(count)
-	 	 	 
-	 	 	  }
-	 	 }, 1000 * 60)*/
   })
 
   cooldown.add(mention.id);
