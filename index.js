@@ -75,7 +75,7 @@ bot.on('ready', async () => {
     
     if (userdata.afk.is == true) {
       embed1.addField('AFK', `Location: ${userdata.afk.location}`)
-      embed1.setColor(config.PURPLE)
+      embed1.setColor(config.ORANGE)
     }
     bot.guilds.cache.get(config.SERVER_ID).channels.cache.get("711048304502374493").messages.fetch(userdata.message).then(e => {
       e.edit(embed1)
