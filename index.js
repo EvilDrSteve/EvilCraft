@@ -52,7 +52,6 @@ bot.on('ready', async () => {
   const counter = setInterval(async () => {
    var userdatas = await Data.find().byIngame()
    if(userdatas.length <= 0){
-     bot.user.setActivity(`Alone`, {type: "PLAYING"})
    }else {
    bot.user.setActivity(`with ${userdatas.length} others`, {type: "PLAYING"});
    }
