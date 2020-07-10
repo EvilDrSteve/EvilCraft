@@ -25,7 +25,7 @@ module.exports.run = async (bot, msg, args) => {
   user.ingame = 0
   user.message = 0
   user.count = 0
-
+  user.afk.is = 0
   await user.save()
 
   online = await Data.find().byIngame()
