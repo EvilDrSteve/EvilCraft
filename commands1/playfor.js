@@ -57,6 +57,8 @@ module.exports.run = async (bot, msg, args) => {
     
     online = await Data.find().byIngame()
     bot.user.setActivity(`with ${online.length} others`, { type: "PLAYING" });;
+  }).catch(err => {
+    console.log(err)
   })
 
   cooldown.add(mention.id);

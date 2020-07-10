@@ -108,5 +108,9 @@ bot.on('message', async (msg) => {
   let commandfile = bot.commands.get(cmd.slice(prefix.length)) || bot.commands.get(bot.aliases.get(cmd.slice(prefix.length)))
   if (commandfile) commandfile.run(bot, msg, args)
   })
+  
+  process.on('unhandledRejection', error => {
+    console.error('Unhandled promise rejection:', error);
+  });
 
 bot.login(process.env.token)
