@@ -7,8 +7,6 @@ const Data = require('../Models/test.js')
 var count = 0
 
 module.exports.run = async (bot, msg, args) => {
-
-console.log(stuff)
 }
   	 module.exports.config = {
   	   name: "test",
