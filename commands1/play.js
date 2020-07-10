@@ -21,7 +21,8 @@ module.exports.run = async (bot, msg, args) => {
 			    ID: msg.author.id,
 			    ingame: 0,
 			    gt: msg.author.username,
-			    count: 0
+			    count: 0,
+			    afk: false
 			  })
 			  await userdata.save()
 			}

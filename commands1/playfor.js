@@ -20,7 +20,8 @@ module.exports.run = async (bot, msg, args) => {
       ID: mention.id,
       ingame: 0,
       gt: mention.username,
-      count: 0
+      count: 0,
+      afk: false
     })
     await userdata.save()
   }

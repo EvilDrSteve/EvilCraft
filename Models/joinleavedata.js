@@ -6,7 +6,11 @@ const DataSchema = mongoose.Schema({
   ingame: Number,
   message: String,
   gt: String,
-  count: Number
+  count: Number,
+  afk: {
+    location: String,
+    is: Boolean
+  }
 });
 
 DataSchema.query.byID = function(id) {
