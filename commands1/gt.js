@@ -25,7 +25,6 @@ module.exports.run = async (bot, msg, args) => {
 
   await user.save()
   msg.channel.send(`Set your GT to __**${user.gt}**__`)
-  msg.delete( {timeout: 1000 * 5} )
 }
 
 
