@@ -5,7 +5,7 @@ const fs = require('fs')
 const cooldown = new Set()
 const Data = require('../Models/joinleavedata.js')
 
-var illegal = "@&"
+var illegal = "@&-/:;()£.,?!_|~<€>$¥•\\"
 var arr = illegal.split("")
 
 function check(n) {
