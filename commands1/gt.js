@@ -30,7 +30,8 @@ module.exports.run = async (bot, msg, args) => {
     m.delete({ timeout: 1000 * 5 })
   })
   
-  if(gt.some(check)) return msg.channel.send("Task Failed: Illegal Characters")
+  chars = gt.split("")
+  if(chars.some(check)) return msg.channel.send("Task Failed: Illegal Characters")
   user.gt = gt
 
   await user.save()
