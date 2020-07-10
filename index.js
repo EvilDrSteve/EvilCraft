@@ -97,7 +97,7 @@ bot.on('ready', async () => {
 })
 
 bot.on('message', async (msg) => {
-  if (msg.author.bot || msg.channel.type == "dm") return;
+ //if (msg.author.bot || msg.channel.type == "dm") return;
 
   let prefix = config.PREFIX
   let messageArray = msg.content.split(" ")
