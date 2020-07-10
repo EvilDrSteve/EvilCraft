@@ -9,7 +9,7 @@ module.exports.run = async (bot, msg, args) => {
 
     if (!msg.content.startsWith(config.PREFIX)) return
   
-    if (msg.author.bot) return;
+    //if (msg.author.bot) return;
    // if (!msg.member.roles.find(r => r.name === "EvilCraft")) return;
   
     user = await Data.findOne().byID(msg.author.id)
