@@ -58,14 +58,14 @@ bot.on('ready', async () => {
    }
    var array = Array.from(userdatas)
   for(let i = 0; i < array.length; i++) {
-    userdata = array[i]
+   let userdata = array[i]
     user2 = bot.guilds.cache.get(config.SERVER_ID).members.cache.get(userdata.ID)
     user1 = user2.user
   //  console.log(userdata)
   if (userdata.ingame == 0) return
   //	 count++
   userdata.count++
-  var embed1 = new Discord.MessageEmbed()
+  let embed1 = new Discord.MessageEmbed()
     .setColor(config.RED)
     .setTitle(`${userdata.gt}`)
     .addField('Playing for', `${userdata.count} Minutes`)
