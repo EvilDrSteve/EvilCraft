@@ -14,7 +14,7 @@ module.exports.run = async (bot, msg, args) => {
   if(loc.length > 30) return msg.channel.send("Max character limit for the location is 30")
   userdata.afk.is = !userdata.afk.is
   userdata.afk.location = loc
-  
+  let user1 = msg.author
   let embed1 = new Discord.MessageEmbed()
     .setColor(config.RED)
     .setTitle(`${userdata.gt}`)
