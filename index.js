@@ -68,13 +68,13 @@ bot.on('ready', async () => {
   let embed1 = new Discord.MessageEmbed()
     .setColor(config.RED)
     .setTitle(`${userdata.gt}`)
-    .addField('Playing for', `${userdata.count} Minutes`)
+    .addField('Playing for', `${userdata.count} Minutes`, true)
     .setThumbnail(user1.displayAvatarURL())
     .setFooter(`AKA ${user1.username}`, user1.avatarURL)
     .setTimestamp()
     
     if (userdata.afk.is == true) {
-      embed1.addField('AFK', `Location: ${userdata.afk.location}`)
+      embed1.addField('AFK', `Location: ${userdata.afk.location}`, true)
       embed1.setColor(config.ORANGE)
     }
     bot.guilds.cache.get(config.SERVER_ID).channels.cache.get("711048304502374493").messages.fetch(userdata.message).then(e => {
