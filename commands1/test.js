@@ -8,8 +8,7 @@ var count = 0
 
 module.exports.run = async (bot, msg, args) => {
 
-bot.guilds.cache.get("iwiw")
-}
+console.log(stuff)
   
   	 module.exports.config = {
   	   name: "test",
