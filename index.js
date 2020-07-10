@@ -56,7 +56,9 @@ bot.on('ready', async () => {
    }else {
    bot.user.setActivity(`with ${userdatas.length} others`, {type: "PLAYING"});
    }
-  Array.from(userdatas).forEach(async (userdata) => {
+   var array = Array.from(userdatas)
+  for(let i = 0; i < array.length; i++) {
+    userdata = array[i]
     user2 = bot.guilds.cache.get(config.SERVER_ID).members.cache.get(userdata.ID)
     user1 = user2.user
   //  console.log(userdata)
@@ -74,11 +76,9 @@ bot.on('ready', async () => {
     bot.guilds.cache.get(config.SERVER_ID).channels.cache.get("711048304502374493").messages.fetch(userdata.message).then(e => {
       e.edit(embed1)
     }).catch(async (err) => {
-      if(err) {
-      console.log("error")
+      console.log(err)
       userdata.ingame = 0
       await userdata.save()
-      }
     })
     
     await userdata.save()
@@ -91,7 +91,7 @@ bot.on('ready', async () => {
    	// m.edit(count)
    	 
    	  }*/
-  })
+  }
   }, 1000 * 60)
   
 })
