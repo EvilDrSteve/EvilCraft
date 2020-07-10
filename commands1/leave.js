@@ -24,7 +24,9 @@ module.exports.run = async (bot, msg, args) => {
     user.count = 0
     
     await user.save()
-    bot.user.setActivity(`with ${userdatas.length} others`, {type: "PLAYING"});
+    
+    online = await Data.find().byIngame()
+    bot.user.setActivity(`with ${online.length} others`, {type: "PLAYING"});
 }
 
 
