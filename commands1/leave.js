@@ -24,6 +24,7 @@ module.exports.run = async (bot, msg, args) => {
     user.count = 0
     
     await user.save()
+    bot.user.setActivity(`with ${userdatas.length} others`, {type: "PLAYING"});
 }
 
 

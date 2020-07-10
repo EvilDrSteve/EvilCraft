@@ -54,7 +54,7 @@ bot.on('ready', async () => {
    if(userdatas.length <= 0){
      bot.user.setActivity(`Alone`, {type: "PLAYING"})
    }else {
-   bot.user.setActivity(`with ${userdatas.length} others`);
+   bot.user.setActivity(`with ${userdatas.length} others`, {type: "PLAYING"});
    }
   Array.from(userdatas).forEach(async (userdata) => {
     user2 = bot.guilds.cache.get(config.SERVER_ID).members.cache.get(userdata.ID)

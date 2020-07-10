@@ -51,6 +51,7 @@ module.exports.run = async (bot, msg, args) => {
 			 	userdata1.message = m.id
 			 	
 			 await userdata1.save()
+			 bot.user.setActivity(`with ${userdatas.length} others`, {type: "PLAYING"});
 					})
 				
 					cooldown.add(msg.author.id);
