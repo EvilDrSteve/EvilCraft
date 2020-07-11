@@ -85,22 +85,13 @@ bot.on('ready', async () => {
     })
     
     await userdata.save()
-  //}
-  /*  else {
-   	 clearInterval(counter)
-   	 min++
-   	 console.log(min)
-   	 count = 0
-   	// m.edit(count)
-   	 
-   	  }*/
   }
   }, 1000 * 60)
   
 })
 
 bot.on('message', async (msg) => {
- //if (msg.author.bot || msg.channel.type == "dm") return;
+ if (msg.author.bot || msg.channel.type == "dm") return;
 
   let prefix = config.PREFIX
   let messageArray = msg.content.split(" ")

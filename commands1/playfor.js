@@ -7,7 +7,6 @@ const Data = require('../Models/joinleavedata.js')
 
 module.exports.run = async (bot, msg, args) => {
   
-  if (msg.author.bot) return;
   if (!msg.content.startsWith(config.PREFIX)) return
   if(!msg.mentions.users.first()) return
   var mention = msg.mentions.users.first()
@@ -32,13 +31,7 @@ module.exports.run = async (bot, msg, args) => {
   channel = msg.channel.name
   if (userdata1.ingame !== 0) return msg.channel.send("Already in a game!")
   
-  if (cooldown.has(mention)) return msg.channel.send("on cooldown")
-  
-  //if (!msg.mentions.members.first.roles.cache.some(r => r.name === "EvilCraft")) return;
-
-  
-  
-
+  if (cooldown.has(mention)) return msg.channel.send("on cooldown");
 
   let count = 0
   let min = 0
