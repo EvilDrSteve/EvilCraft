@@ -67,7 +67,7 @@ bot.on('ready', async () => {
   let embed1 = new Discord.MessageEmbed()
     .setColor(config.RED)
     .setTitle(`${userdata.gt}`)
-    .addField('Playing for', `/`/`${userdata.count} Minutes`/`/`, true)
+    .addField('Playing for', ``${userdata.count} Minutes``, true)
     .setThumbnail(user1.displayAvatarURL())
     .setFooter(`AKA ${user1.username}`, user1.avatarURL)
     .setTimestamp()
