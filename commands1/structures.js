@@ -53,7 +53,7 @@ console.log(msg)
       
       collector.on('collect', c => {
         if(c.content == "confirm"){
-          senddata(x, y, type, msg)
+          senddata(x, z, type, msg)
         }
       })
       })
