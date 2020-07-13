@@ -69,7 +69,7 @@ module.exports.run = async (bot, msg, args) => {
       .setColor(config.RED)
       .setTitle("Structures | All")
       .setThumbnail(msg.guild.iconURL())
-      .setFooter(`${user.username}`, user.avatarURL)
+      .setFooter(`${msg.author.username}`, msg.author.avatarURL)
       .setTimestamp()
 
     for (let i = 0; i < structures.length || i < 25; i++) {
