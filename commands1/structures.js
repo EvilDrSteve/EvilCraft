@@ -6,7 +6,7 @@ const cooldown = new Set()
 const Data = require('../Models/structures.js')
 
 module.exports.run = async (bot, msg, args) => {
-  /*if (!msg.content.startsWith(config.PREFIX)) return
+  if (!msg.content.startsWith(config.PREFIX)) return
   const filter = response => {
     return msg.author === response.author
   }
@@ -15,11 +15,21 @@ module.exports.run = async (bot, msg, args) => {
   x = args[1]
   z = args[2]
   type = args[3]
-  var structures = Data.find().byDIST(x, z, 70)
-  if (structures) {
+  var output = []
+  var structures = Array.from(Data.find())
+  structures.forEach((index, struc) => {
+    
+      let a = Math.abs(struc.Coords.x - x)
+      let b = Math.abs(struc.Coords.z - z)
+      let dist = Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2))
+      if(dist < 70){
+        output.push(struc)
+      }
+  })
+  if (output) {
     msg.channel.send(`Structures have already been reported in a 70 blocks radius of the coordinates you mentioned, please check the structures listed below and type confirm to continue or end to stop`)
 
-    msg.channel.send(`${Array.from(structures)}`).then(() => {
+    msg.channel.send(`${output}`).then(() => {
       msg.channel.awaitMessages(filter, { max: 1, time: 10000, errors: ['time'] }).then(async (collected) => {
         if (collected.first() == "confirm") {
           let newstructure = new Data({
@@ -50,7 +60,7 @@ module.exports.run = async (bot, msg, args) => {
     await newstructure.save().then(() => {
       msg.channel.send("structure has been added")
     })
-  }*/
+  }
 }
 
 module.exports.config = {
