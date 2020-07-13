@@ -26,58 +26,58 @@ module.exports.run = async (bot, msg, args) => {
     return m.author.id === msg.author.id
   }
   action = args[0]
-  if(action == "add"){
-  if (isNaN(args[1]) || isNaN(args[2])) return msg.channel.send("Command format wrong")
-  x = args[1]
-  z = args[2]
-  type = args[3]
-  var output = []
-  var datas = await Data.find()
-  var structures = Array.from(datas)
-  for (let i = 0; i < structures.length; i++) {
+  if (action == "add") {
+    if (isNaN(args[1]) || isNaN(args[2])) return msg.channel.send("Command format wrong")
+    x = args[1]
+    z = args[2]
+    type = args[3]
+    var output = []
+    var datas = await Data.find()
+    var structures = Array.from(datas)
+    for (let i = 0; i < structures.length; i++) {
 
-    let a = Math.abs(structures[i].Coords.x - x)
-    let b = Math.abs(structures[i].Coords.z - z)
-    let dist = Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2))
+      let a = Math.abs(structures[i].Coords.x - x)
+      let b = Math.abs(structures[i].Coords.z - z)
+      let dist = Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2))
 
-    if (dist < 70) {
+      if (dist < 70) {
 
-      output.push(structures[i].Type)
+        output.push(structures[i].Type)
+      }
     }
-  }
 
-  if (output.length > 0) {
-    msg.channel.send(`Structures have already been reported in a 70 blocks radius of the coordinates you mentioned, please check the structures listed below and type confirm to continue or end to stop`)
-    
-    msg.channel.send(`${output}`).then(m => {
-      const collector = msg.channel.createMessageCollector(filter, {max: 1, time: 10000})
-      
-      collector.on('collect', c => {
-        if(c.content == "confirm"){
-          senddata(x, z, type, msg)
-        }else return msg.channel.send("Cancelled")
+    if (output.length > 0) {
+      msg.channel.send(`Structures have already been reported in a 70 blocks radius of the coordinates you mentioned, please check the structures listed below and type confirm to continue or end to stop`)
+
+      msg.channel.send(`${output}`).then(m => {
+        const collector = msg.channel.createMessageCollector(filter, { max: 1, time: 10000 })
+
+        collector.on('collect', c => {
+          if (c.content == "confirm") {
+            senddata(x, z, type, msg)
+          } else return msg.channel.send("Cancelled")
+        })
       })
-      })
-  } else {
-    senddata(x, z, type, msg)
-  }
-  //add ends here
-  }else if(action == "all"){
+    } else {
+      senddata(x, z, type, msg)
+    }
+    //add ends here
+  } else if (action == "all") {
     let datas = await Data.find()
     let structures = Array.from(datas)
-    let embed = new Discord.MessageEmbed
+    let embed = new Discord.MessageEmbed()
       .setColor(config.RED)
-        .setTitle("Structures | All")
-        .setThumbnail(guild.iconURL())
-        .setFooter(`${user.username}`, user.avatarURL)
-        .setTimestamp()
-        
-        for(let i = 0; i < structures.length || i < 25; i ++){
-          str = structures[i]
-          embed.addField(str.Type, `x: ${str.x}, z: ${str.z}`)
-        }
-        
-        msg.channel.send(embed)
+      .setTitle("Structures | All")
+      .setThumbnail(guild.iconURL())
+      .setFooter(`${user.username}`, user.avatarURL)
+      .setTimestamp()
+
+    for (let i = 0; i < structures.length || i < 25; i++) {
+      str = structures[i]
+      embed.addField(str.Type, `x: ${str.x}, z: ${str.z}`)
+    }
+
+    msg.channel.send(embed)
   }
 }
 
