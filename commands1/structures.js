@@ -19,7 +19,7 @@ module.exports.run = async (bot, msg, args) => {
   var datas = await Data.find()
   var structures = Array.from(datas)
   console.log(structures)
-  for(let i = 0; i < structurs.length; i++) {
+  for(let i = 0; i < structures.length; i++) {
     
       let a = Math.abs(structures[i].Coords.x - x)
       let b = Math.abs(structures[i].Coords.z - z)
@@ -27,7 +27,7 @@ module.exports.run = async (bot, msg, args) => {
       console.log(dist)
       if(dist < 70){
         console.log("passed if")
-        output.push(structure[i])
+        output.push(structures[i])
       }
   }
   console.log(output)
