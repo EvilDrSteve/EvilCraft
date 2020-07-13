@@ -53,7 +53,7 @@ module.exports.run = async (bot, msg, args) => {
         .setThumbnail(msg.guild.iconURL())
         .setFooter('Type "Proceed" to add the structure or "Cancel" to cancel')
       for (let c = 0; c < output.length; c++) {
-        embedExist.addField(output[c].Type, `x: ${output[c].x}, z: ${output[c].z}`)
+        embedExist.addField(output[c].Type, `x: ${output[c].Coords.x}, z: ${output[c].Coords.z}`)
       }
       msg.channel.send(`Some structures have been detected near the coordinates mentioned, please check if the structure you are trying to add is already there`)
 
