@@ -74,7 +74,7 @@ module.exports.run = async (bot, msg, args) => {
 
     for (let i = 0; i < structures.length || i < 25; i++) {
       console.log(structures[i])
-      embed.addField(structures[i].Type, `x: ${str.x}, z: ${str.z}`)
+      embed.addField(structures[i].Type, `x: ${structures[i].x}, z: ${structures[i].z}`)
     }
 
     msg.channel.send(embed)
