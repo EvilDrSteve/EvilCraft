@@ -49,7 +49,7 @@ module.exports.run = async (bot, msg, args) => {
     })
   } else {
     let newstructure = new Data({
-      _id: mongoose.Types.ObjectId,
+      _id: mongoose.Types.ObjectId(),
       Type: type,
       Coords: { x: x, y: 0, z: z },
       Farm: false,
