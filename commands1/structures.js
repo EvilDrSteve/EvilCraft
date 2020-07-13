@@ -46,7 +46,7 @@ module.exports.run = async (bot, msg, args) => {
             Reporter: msg.author.tag
           });
 
-          //await newstructure.save()
+          await newstructure.save()
           msg.channel.send("Structure has been added to the database")
         }else if(collected.first().content === ("end")) return msg.channel.send("Cancelled").catch(err => {
           msg.channel.send("Task failed successfully")
@@ -67,9 +67,6 @@ module.exports.run = async (bot, msg, args) => {
       msg.channel.send("structure has been added")
     })
   }
-  await newstructure.save().then(() => {
-    msg.channel.send("saves")
-  })
 }
 
 module.exports.config = {
