@@ -72,7 +72,7 @@ module.exports.run = async (bot, msg, args) => {
       .setFooter(`${msg.author.username}`, msg.author.avatarURL)
       .setTimestamp()
 
-    for (let i = 0; i < structures.length || i < 25; i++) {
+    for (let i = 0; i < structures.length; i++) {
       console.log(structures[i])
       embed.addField(structures[i].Type, `x: ${structures[i].x}, z: ${structures[i].z}`)
     }
