@@ -35,7 +35,7 @@ module.exports.run = async (bot, msg, args) => {
 
     msg.channel.send(`${output}`).then(() => {
       msg.channel.awaitMessages(filter, { maxMatches: 1, time: 10000, errors: ['time'] }).then(async (collected) => {
-        if(collected.first().content == "confirm") {
+        if(collected.first().content === ("confirm")) {
           let newstructure = new Data({
             _id: mongoose.Types.ObjectId,
             Type: type,
@@ -48,7 +48,7 @@ module.exports.run = async (bot, msg, args) => {
 
           await newstructure.save()
           msg.channel.send("Structure has been added to the database")
-        }else if(collected.first().content == "end") return msg.channel.send("Cancelled").catch(err => {
+        }else if(collected.first().content === ("end")) return msg.channel.send("Cancelled").catch(err => {
           msg.channel.send("Task failed successfully")
         })
       })
