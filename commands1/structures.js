@@ -16,7 +16,8 @@ module.exports.run = async (bot, msg, args) => {
   z = args[2]
   type = args[3]
   var output = []
-  var structures = Array.from(Data.find())
+  var datas = await Data.find()
+  var structures = Array.from(datas)
   structures.forEach((index, struc) => {
     
       let a = Math.abs(struc.Coords.x - x)
