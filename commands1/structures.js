@@ -64,7 +64,7 @@ module.exports.run = async (bot, msg, args) => {
     //add ends here
   } else if (action == "all") {
     let datas = await Data.find()
-    let structures = Array.from(datas)
+    var structures = Array.from(datas)
     let embed = new Discord.MessageEmbed()
       .setColor(config.RED)
       .setTitle("Structures | All")
@@ -73,6 +73,7 @@ module.exports.run = async (bot, msg, args) => {
       .setTimestamp()
 
     for (let i = 0; i < structures.length || i < 25; i++) {
+      console.log(structures[i])
       str = structures[i]
       embed.addField(str.Type, `x: ${str.x}, z: ${str.z}`)
     }
