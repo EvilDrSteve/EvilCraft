@@ -28,16 +28,16 @@ structureSchema.query.byFarm = function() {
   });
 };
 
-structureSchama.methods.Distance = function(x, z){
-  let a = Math.abs(this.Coorde.x - x)
+/*structureSchema.methods.Distance = function(x, z, rad){
+  let a = Math.abs(this.Coords.x - x)
   let b = Math.abs(this.Coords.z - z)
   let dist = Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2))
+  
   return dist
 }
 structureSchema.query.byDIST = function(a, b, rad) {
   return this.where({
     Distance(a, b) < rad
   })
-}
-
+}*/
 module.exports = mongoose.model("Structure", structureSchema);

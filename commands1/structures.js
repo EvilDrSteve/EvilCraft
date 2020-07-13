@@ -6,7 +6,7 @@ const cooldown = new Set()
 const Data = require('../Models/structures.js')
 
 module.exports.run = async (bot, msg, args) => {
-  if (!msg.content.startsWith(config.PREFIX)) return
+  /*if (!msg.content.startsWith(config.PREFIX)) return
   const filter = response => {
     return msg.author === response.author
   }
@@ -50,7 +50,7 @@ module.exports.run = async (bot, msg, args) => {
     await newstructure.save().then(() => {
       msg.channel.send("structure has been added")
     })
-  }
+  }*/
 }
 
 module.exports.config = {
