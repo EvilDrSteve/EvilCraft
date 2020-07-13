@@ -58,7 +58,7 @@ console.log(msg)
       })
       })
   } else {
-    senddata(x, y, type, msg)
+    senddata(x, z, type, msg)
   }
 }
 
