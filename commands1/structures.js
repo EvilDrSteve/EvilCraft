@@ -57,7 +57,6 @@ module.exports.run = async (bot, msg, args) => {
         }
       }
     }
-    if (exact.length > 0) return msg.channel.send("Theres already a structure registered under those coordinates")
     if (output.length > 0) {
       let embedExist = new Discord.MessageEmbed()
         .setColor(config.RED)
