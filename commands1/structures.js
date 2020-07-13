@@ -38,13 +38,13 @@ module.exports.run = async (bot, msg, args) => {
 
       if (structures[i].Coords.x == x && structures[i].Coords.z == z) {
         let embedExact = new Discord.MessageEmbed()
-        .setColor(config.RED)
+          .setColor(config.RED)
           .setTitle("Coordinates Taken")
-          .addField(structures[i].Type, `x: ${structures[i].Coords.x}, z: ${structures[i].z}`)
+          .addField(structures[i].Type, `x: ${structures[i].Coords.x}, z: ${structures[i].Coords.z}`)
           .setThumbnail(msg.guild.iconURL())
           .setFooter("Theres already a structure registered under those coordinates")
           .setTimestamp()
-        
+
         msg.channel.send(embedExact)
         break
       } else {
