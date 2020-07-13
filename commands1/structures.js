@@ -46,7 +46,7 @@ module.exports.run = async (bot, msg, args) => {
 
         msg.channel.send(embedExact)
         break
-      } else {
+      } else if(structures[i].Coords.x !== x && structures[i].Coords.z !== z){
         let a = Math.abs(structures[i].Coords.x - x)
         let b = Math.abs(structures[i].Coords.z - z)
         let dist = Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2))
