@@ -44,9 +44,9 @@ module.exports.run = async (bot, msg, args) => {
           .setThumbnail(msg.guild.iconURL())
           .setFooter("Theres already a structure registered under those coordinates")
 
-        msg.channel.send(embedExact)
-        break
-      } else if(structures[i].Coords.x !== x && structures[i].Coords.z !== z){
+        return msg.channel.send(embedExact)
+        
+      } else if (structures[i].Coords.x !== x && structures[i].Coords.z !== z) {
         let a = Math.abs(structures[i].Coords.x - x)
         let b = Math.abs(structures[i].Coords.z - z)
         let dist = Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2))
@@ -79,8 +79,8 @@ module.exports.run = async (bot, msg, args) => {
           }
         })
         collector.on('end', (c, reason) => {
-          if(reason == "time"){
-          msg.channel.send("No reponses, the task has been cancelled")
+          if (reason == "time") {
+            msg.channel.send("No reponses, the task has been cancelled")
           }
         })
       })
