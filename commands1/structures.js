@@ -68,7 +68,7 @@ module.exports.run = async (bot, msg, args) => {
     let embed = new Discord.MessageEmbed()
       .setColor(config.RED)
       .setTitle("Structures | All")
-      .setThumbnail(guild.iconURL())
+      .setThumbnail(msg.guild.iconURL())
       .setFooter(`${user.username}`, user.avatarURL)
       .setTimestamp()
 
