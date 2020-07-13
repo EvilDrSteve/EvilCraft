@@ -26,7 +26,7 @@ module.exports.run = async (bot, msg, args) => {
         output.push(struc)
       }
   })
-  if (output) {
+  if (output.length > 0) {
     msg.channel.send(`Structures have already been reported in a 70 blocks radius of the coordinates you mentioned, please check the structures listed below and type confirm to continue or end to stop`)
 
     msg.channel.send(`${output}`).then(() => {
