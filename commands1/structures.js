@@ -69,12 +69,15 @@ module.exports.run = async (bot, msg, args) => {
       msg.channel.send(`Some structures have been detected near the coordinates mentioned, please check if the structure you are trying to add is already there`)
 
       msg.channel.send(embedExist).then(m => {
-        const collector = msg.channel.createMessageCollector(filter, { max: 1, time: 10000 })
+        const collector = msg.channel.createMessageCollector(filter, { max: 1, time: 30000 })
 
         collector.on('collect', c => {
-          if (c.content == "confirm") {
+          if (c.content.toLowerCase() == "proceed") {
             senddata(x, z, type, msg)
           } else return msg.channel.send("Cancelled")
+        })
+        collector.on('end', c => {
+          msg.channel.send("No reponses, the task has been cancelled")
         })
       })
     } else {
