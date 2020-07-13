@@ -32,10 +32,14 @@ module.exports.run = async (bot, msg, args) => {
     z = args[2]
     type = args[3]
     var output = []
+    var exact = []
     var datas = await Data.find()
     var structures = Array.from(datas)
     for (let i = 0; i < structures.length; i++) {
-
+      
+      if(structures[i].Coords.x == x && strcutures[i].Coords.z == z){
+        exact.push(structures[i])
+      }else{
       let a = Math.abs(structures[i].Coords.x - x)
       let b = Math.abs(structures[i].Coords.z - z)
       let dist = Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2))
@@ -44,8 +48,9 @@ module.exports.run = async (bot, msg, args) => {
 
         output.push(structures[i])
       }
+      }
     }
-
+    if(exact.length > 0) return msg.channel.send("Theres already a structure registered under those coordinates")
     if (output.length > 0) {
       let embedExist = new Discord.MessageEmbed()
         .setColor(config.RED)
