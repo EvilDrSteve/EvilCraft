@@ -7,7 +7,7 @@ const Data = require('../Models/structures.js')
 
 async function senddata(x, z, type, msg) {
   newstructure = new Data({
-    _id: mongoose.Types.ObjectId,
+    _id: mongoose.Types.ObjectId()
     Type: type,
     Coords: { x: x, y: 0, z: z },
     Farm: false,
@@ -47,7 +47,7 @@ module.exports.run = async (bot, msg, args) => {
 
   if (output.length > 0) {
     msg.channel.send(`Structures have already been reported in a 70 blocks radius of the coordinates you mentioned, please check the structures listed below and type confirm to continue or end to stop`)
-console.log(msg)
+    
     msg.channel.send(`${output}`).then(m => {
       const collector = msg.channel.createMessageCollector(filter, {max: 1, time: 10000})
       
