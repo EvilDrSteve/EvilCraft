@@ -51,7 +51,7 @@ module.exports.run = async (bot, msg, args) => {
     msg.channel.send(`${output}`).then(() => {
       const collector = msg.channel.creatMessageCollector(filter, {max: 1, time: 10000})
       
-      collector.on('collect' c => {
+      collector.on('collect', c => {
         if(c.content == "confirm"){
           senddata(x, y, type, msg)
         }
