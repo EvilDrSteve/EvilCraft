@@ -7,8 +7,8 @@ const Data = require('../Models/structures.js')
 
 module.exports.run = async (bot, msg, args) => {
   if (!msg.content.startsWith(config.PREFIX)) return
-  const filter = response => {
-    return msg.author.id === response.author.id
+  const filter = m => {
+    return m.author.id === msg.author.id
   }
   action = args[0]
   if(isNaN(args[1]) || isNaN(args[2])) return msg.channel.send("Command format wrong")
@@ -34,7 +34,7 @@ module.exports.run = async (bot, msg, args) => {
     msg.channel.send(`Structures have already been reported in a 70 blocks radius of the coordinates you mentioned, please check the structures listed below and type confirm to continue or end to stop`)
 
     msg.channel.send(`${output}`).then(() => {
-      msg.channel.awaitMessages(filter, { max: 1, time: 10000, errors: ['time'] }).then(async (collected) => {
+      msg.channel.awaitMessages(filter, { maxMatches: 1, time: 10000, errors: ['time'] }).then(async (collected) => {
         if(collected.first() == "confirm") {
           let newstructure = new Data({
             _id: mongoose.Types.ObjectId,
