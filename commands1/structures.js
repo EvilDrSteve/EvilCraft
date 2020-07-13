@@ -47,9 +47,17 @@ module.exports.run = async (bot, msg, args) => {
     }
 
     if (output.length > 0) {
-      msg.channel.send(`Structures have already been reported in a 70 blocks radius of the coordinates you mentioned, please check the structures listed below and type confirm to continue or end to stop`)
+      let embedExist = new Discord.MessageEmbed()
+       .setColor(config.RED)
+         .setTitle(`Structures near ${x}, ${z})
+         .setThumbnail(msg.guild.iconURL())
+         .setFooter('Type "Proceed" to add the structure or "Cancel" to cancel')
+         for(let c = 0; c < output.length; c++){
+           embedExist.addField(output[c].Type, `x: ${output[c].x}, z: ${output[c].z})
+         }
+      msg.channel.send(`Some structures have been detected near the coordinates mentioned, please check if the structure you are trying to add is already there`)
 
-      msg.channel.send(`${output}`).then(m => {
+      msg.channel.send(embedExist).then(m => {
         const collector = msg.channel.createMessageCollector(filter, { max: 1, time: 10000 })
 
         collector.on('collect', c => {
