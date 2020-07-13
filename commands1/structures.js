@@ -7,7 +7,7 @@ const Data = require('../Models/structures.js')
 
 async function senddata(x, z, type, msg) {
   newstructure = new Data({
-    _id: mongoose.Types.ObjectId()
+    _id: mongoose.Types.ObjectId(),
     Type: type,
     Coords: { x: x, y: 0, z: z },
     Farm: false,
