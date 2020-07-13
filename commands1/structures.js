@@ -42,7 +42,7 @@ module.exports.run = async (bot, msg, args) => {
 
       if (dist < 70) {
 
-        output.push(structures[i].Type)
+        output.push(structures[i])
       }
     }
 
