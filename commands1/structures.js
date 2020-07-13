@@ -79,7 +79,7 @@ module.exports.run = async (bot, msg, args) => {
         })
         collector.on('end', (c, reason) => {
           if (reason == "time") {
-            m.edit("No reponses, the task has been cancelled", (null))
+            m.edit("No reponses, the task has been cancelled", "")
           }
         })
       })
