@@ -22,7 +22,9 @@ module.exports.run = async (bot, msg, args) => {
       let a = Math.abs(struc.Coords.x - x)
       let b = Math.abs(struc.Coords.z - z)
       let dist = Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2))
+      console.log(dist)
       if(dist < 70){
+        console.log("passed if")
         output.push(struc)
       }
   })
