@@ -54,7 +54,7 @@ module.exports.run = async (bot, msg, args) => {
       collector.on('collect', c => {
         if(c.content == "confirm"){
           senddata(x, z, type, msg)
-        }
+        }else return msg.channel.send("Cancelled")
       })
       })
   } else {
