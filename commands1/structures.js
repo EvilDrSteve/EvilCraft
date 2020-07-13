@@ -65,5 +65,5 @@ module.exports.run = async (bot, msg, args) => {
 
 module.exports.config = {
   name: "structures",
-  aliases: ["str", "structure", "strct"]
+  aliases: ["str"]
 }
