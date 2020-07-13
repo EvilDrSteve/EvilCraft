@@ -8,7 +8,7 @@ const Data = require('../Models/structures.js')
 async function senddata(x, z, type, msg) {
   newstructure = new Data({
     _id: mongoose.Types.ObjectId(),
-    Type: type,
+    Type: type.toLowerCase()
     Coords: { x: x, y: 0, z: z },
     Farm: false,
     Spawner: true,
@@ -26,6 +26,7 @@ module.exports.run = async (bot, msg, args) => {
     return m.author.id === msg.author.id
   }
   action = args[0]
+  if(action == "add"){
   if (isNaN(args[1]) || isNaN(args[2])) return msg.channel.send("Command format wrong")
   x = args[1]
   z = args[2]
@@ -59,6 +60,24 @@ module.exports.run = async (bot, msg, args) => {
       })
   } else {
     senddata(x, z, type, msg)
+  }
+  //add ends here
+  }else if(action == "all"){
+    let datas = await Data.find()
+    let structures = Array.from(datas)
+    let embed = new Discord.MessageEmbed
+      setColor(config.RED)
+        .setTitle("Structures | All")
+        .setThumbnail(guild.iconURL())
+        .setFooter(`${user.username}`, user.avatarURL)
+        .setTimestamp()
+        
+        for(let i = 0; i < structures.length || i < 25; i ++){
+          str = structures[i]
+          embed.addField(str.Type, `x: ${str.x}, z: ${str.z}`)
+        }
+        
+        msg.channel.send(embed)
   }
 }
 
