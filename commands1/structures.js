@@ -74,10 +74,14 @@ module.exports.run = async (bot, msg, args) => {
         collector.on('collect', c => {
           if (c.content.toLowerCase() == "proceed") {
             senddata(x, z, type, msg)
-          } else return msg.channel.send("Cancelled")
+            collectorEnd = true
+          } else{
+             msg.channel.send("Cancelled")
+             collectorEnd = true
+          }
         })
         collector.on('end', c => {
-          msg.channel.send("No reponses, the task has been cancelled")
+          if(collectorEnd !== true) return msg.channel.send("No reponses, the task has been cancelled")
         })
       })
     } else {
