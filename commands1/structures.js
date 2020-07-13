@@ -36,7 +36,7 @@ module.exports.run = async (bot, msg, args) => {
     msg.channel.send(`${output}`).then(() => {
       msg.channel.awaitMessages(filter, { maxMatches: 1, time: 10000, errors: ['time'] }).then(collected => {
         if(collected.first().content === ("confirm")) {
-          let newstructure = new Data({
+           newstructure = new Data({
             _id: mongoose.Types.ObjectId,
             Type: type,
             Coords: { x: x, y: 0, z: z },
@@ -54,7 +54,7 @@ module.exports.run = async (bot, msg, args) => {
       })
     })
   } else {
-    let newstructure = new Data({
+     newstructure = new Data({
       _id: mongoose.Types.ObjectId(),
       Type: type,
       Coords: { x: x, y: 0, z: z },
