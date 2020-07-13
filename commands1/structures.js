@@ -66,9 +66,8 @@ module.exports.run = async (bot, msg, args) => {
       for (let c = 0; c < output.length; c++) {
         embedExist.addField(output[c].Type, `x: ${output[c].Coords.x}, z: ${output[c].Coords.z}`)
       }
-      msg.channel.send(`Some structures have been detected near the coordinates mentioned, please check if the structure you are trying to add is already there`)
 
-      msg.channel.send(embedExist).then(m => {
+      msg.channel.send("Some structures have been detected near the coordinates mentioned, please check if the structure you are trying to add is already there", embedExist).then(m => {
         const collector = msg.channel.createMessageCollector(filter, { max: 1, time: 30000 })
 
         collector.on('collect', c => {
@@ -80,7 +79,7 @@ module.exports.run = async (bot, msg, args) => {
         })
         collector.on('end', (c, reason) => {
           if (reason == "time") {
-            msg.channel.send("No reponses, the task has been cancelled")
+            m.edit("No reponses, the task has been cancelled")
           }
         })
       })
