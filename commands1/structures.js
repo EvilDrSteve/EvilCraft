@@ -79,8 +79,9 @@ module.exports.run = async (bot, msg, args) => {
           }
         })
         collector.on('end', (c, reason) => {
-          console.log(reason)
+          if(reason == "time"){
           msg.channel.send("No reponses, the task has been cancelled")
+          }
         })
       })
     } else {
