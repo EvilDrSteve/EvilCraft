@@ -19,17 +19,17 @@ module.exports.run = async (bot, msg, args) => {
   var datas = await Data.find()
   var structures = Array.from(datas)
   console.log(structures)
-  structures.forEach((index, struc) => {
+  for(let i = 0; i < structurs.length; i++) {
     
-      let a = Math.abs(struc.Coords.x - x)
-      let b = Math.abs(struc.Coords.z - z)
+      let a = Math.abs(structures[i].Coords.x - x)
+      let b = Math.abs(structures[i].Coords.z - z)
       let dist = Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2))
       console.log(dist)
       if(dist < 70){
         console.log("passed if")
-        output.push(struc)
+        output.push(structure[i])
       }
-  })
+  }
   console.log(output)
   if (output.length > 0) {
     msg.channel.send(`Structures have already been reported in a 70 blocks radius of the coordinates you mentioned, please check the structures listed below and type confirm to continue or end to stop`)
