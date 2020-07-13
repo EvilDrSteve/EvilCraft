@@ -11,6 +11,7 @@ module.exports.run = async (bot, msg, args) => {
     return msg.author === response.author
   }
   action = args[0]
+  if(isNaN(args[1]) || isNaN(args[2])) return msg.channel.send("Command format wrong")
   x = args[1]
   z = args[2]
   type = args[3]
