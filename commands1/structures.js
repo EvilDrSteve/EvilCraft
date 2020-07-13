@@ -43,7 +43,6 @@ module.exports.run = async (bot, msg, args) => {
           .addField(structures[i].Type, `x: ${structures[i].Coords.x}, z: ${structures[i].Coords.z}`)
           .setThumbnail(msg.guild.iconURL())
           .setFooter("Theres already a structure registered under those coordinates")
-          .setTimestamp()
 
         msg.channel.send(embedExact)
         break
