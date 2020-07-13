@@ -5,7 +5,7 @@ const fs = require('fs')
 const cooldown = new Set()
 const Data = require('../Models/structures.js')
 
-async function upload(x, z, type, msg) {
+async function senddata(x, z, type, msg) {
   newstructure = new Data({
     _id: mongoose.Types.ObjectId,
     Type: type,
@@ -49,16 +49,16 @@ module.exports.run = async (bot, msg, args) => {
     msg.channel.send(`Structures have already been reported in a 70 blocks radius of the coordinates you mentioned, please check the structures listed below and type confirm to continue or end to stop`)
 
     msg.channel.send(`${output}`).then(() => {
-      msg.channel.awaitMessages(filter, { maxMatches: 1, time: 10000, errors: ['time'] }).then(collected => {
-        if (collected.first().content === ("confirm")) {
-          upload(x, y, type, msg)
-        } else if (collected.first().content === ("end")) return msg.channel.send("Cancelled").catch(err => {
-          msg.channel.send("Task failed successfully")
-        })
+      const collector = msg.channel.creatMessageCollector(filter, {max: 1, time: 10000})
+      
+      collector.on('collect' c => {
+        if(c.content == "confirm"){
+          senddata(x, y, type, msg)
+        }
       })
-    })
+      })
   } else {
-    upload(x, y, type, msg)
+    senddata(x, y, type, msg)
   }
 }
 
