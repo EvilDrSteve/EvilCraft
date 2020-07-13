@@ -47,7 +47,7 @@ module.exports.run = async (bot, msg, args) => {
 
   if (output.length > 0) {
     msg.channel.send(`Structures have already been reported in a 70 blocks radius of the coordinates you mentioned, please check the structures listed below and type confirm to continue or end to stop`)
-
+console.log(msg)
     msg.channel.send(`${output}`).then(m => {
       const collector = m.channel.creatMessageCollector(filter, {max: 1, time: 10000})
       
