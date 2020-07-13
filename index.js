@@ -48,50 +48,49 @@ fs.readdir("./commands1", (err, files) => {
 
 bot.on('ready', async () => {
   console.log("Now online")
-  
+
   const counter = setInterval(async () => {
-   var userdatas = await Data.find().byIngame()
-   if(userdatas.length <= 0){
-   }else {
-   bot.user.setActivity(`with ${userdatas.length} others`, {type: "PLAYING"});
-   }
-   var array = Array.from(userdatas)
-  for(let i = 0; i < array.length; i++) {
-   let userdata = array[i]
-    user2 = bot.guilds.cache.get(config.SERVER_ID).members.cache.get(userdata.ID)
-    user1 = user2.user
-  //  console.log(userdata)
-  if (userdata.ingame == 0) return
-  //	 count++
-  userdata.count++
-  let embed1 = new Discord.MessageEmbed()
-    .setColor(config.RED)
-    .setTitle(`${userdata.gt}`)
-    .addField('Playing for', `\`\`\`${userdata.count} Minutes\`\`\``, true)
-    .setThumbnail(user1.displayAvatarURL())
-    .setFooter(`AKA ${user1.username}`, user1.avatarURL)
-    .setTimestamp()
-    
-    if (userdata.afk.is == true) {
-      embed1.addField('AFK', `Location: ${userdata.afk.location}`, true)
-      embed1.setColor(config.ORANGE)
+    var userdatas = await Data.find().byIngame()
+    if (userdatas.length <= 0) {} else {
+      bot.user.setActivity(`with ${userdatas.length} others`, { type: "PLAYING" });
     }
-    bot.guilds.cache.get(config.SERVER_ID).channels.cache.get("711048304502374493").messages.fetch(userdata.message).then(e => {
-      e.edit(embed1)
-    }).catch(async (err) => {
-      console.log(err)
-      userdata.ingame = 0
+    var array = Array.from(userdatas)
+    for (let i = 0; i < array.length; i++) {
+      let userdata = array[i]
+      user2 = bot.guilds.cache.get(config.SERVER_ID).members.cache.get(userdata.ID)
+      user1 = user2.user
+      //  console.log(userdata)
+      if (userdata.ingame == 0) return
+      //	 count++
+      userdata.count++
+      let embed1 = new Discord.MessageEmbed()
+        .setColor(config.RED)
+        .setTitle(`${userdata.gt}`)
+        .addField('Playing for', `\`\`\`${userdata.count} Minutes\`\`\``, true)
+        .setThumbnail(user1.displayAvatarURL())
+        .setFooter(`AKA ${user1.username}`, user1.avatarURL)
+        .setTimestamp()
+
+      if (userdata.afk.is == true) {
+        embed1.addField('AFK', `Location: ${userdata.afk.location}`, true)
+        embed1.setColor(config.ORANGE)
+      }
+      bot.guilds.cache.get(config.SERVER_ID).channels.cache.get("711048304502374493").messages.fetch(userdata.message).then(e => {
+        e.edit(embed1)
+      }).catch(async (err) => {
+        console.log(err)
+        userdata.ingame = 0
+        await userdata.save()
+      })
+
       await userdata.save()
-    })
-    
-    await userdata.save()
-  }
+    }
   }, 1000 * 60)
-  
+
 })
 
 bot.on('message', async (msg) => {
- if (msg.author.bot || msg.channel.type == "dm") return;
+  if (msg.author.bot || msg.channel.type == "dm") return;
 
   let prefix = config.PREFIX
   let messageArray = msg.content.split(" ")
@@ -101,10 +100,10 @@ bot.on('message', async (msg) => {
 
   let commandfile = bot.commands.get(cmd.slice(prefix.length)) || bot.commands.get(bot.aliases.get(cmd.slice(prefix.length)))
   if (commandfile) commandfile.run(bot, msg, args)
-  })
-  
-  process.on('unhandledRejection', error => {
-    console.error('Unhandled promise rejection:', error);
-  });
+})
+
+process.on('unhandledRejection', error => {
+  console.error('Unhandled promise rejection:', error);
+});
 
 bot.login(process.env.token)

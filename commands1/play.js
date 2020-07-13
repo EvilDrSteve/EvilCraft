@@ -7,7 +7,7 @@ const Data = require('../Models/joinleavedata.js')
 
 module.exports.run = async (bot, msg, args) => {
 			
-			if(!msg.content.startsWith(config.PREFIX)) return
+  			if(!msg.content.startsWith(config.PREFIX)) return
 		
 			let userstuff = await Data.findOne().byID(msg.author.id)
 		
