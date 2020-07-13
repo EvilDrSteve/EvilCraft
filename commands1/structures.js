@@ -35,7 +35,7 @@ module.exports.run = async (bot, msg, args) => {
           let newstructure = new Data({
             _id: mongoose.Types.ObjectId,
             Type: type,
-            Coords: { x: x, y: "~", z: z },
+            Coords: { x: x, y: 0, z: z },
             Farm: false,
             Spawner: true,
             Dimension: 0,
@@ -51,7 +51,7 @@ module.exports.run = async (bot, msg, args) => {
     let newstructure = new Data({
       _id: mongoose.Types.ObjectId,
       Type: type,
-      Coords: { x: x, y: "~", z: z },
+      Coords: { x: x, y: 0, z: z },
       Farm: false,
       Spawner: true,
       Dimension: 0,
