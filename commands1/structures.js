@@ -34,7 +34,7 @@ module.exports.run = async (bot, msg, args) => {
     msg.channel.send(`Structures have already been reported in a 70 blocks radius of the coordinates you mentioned, please check the structures listed below and type confirm to continue or end to stop`)
 
     msg.channel.send(`${output}`).then(() => {
-      msg.channel.awaitMessages(filter, { maxMatches: 1, time: 10000, errors: ['time'] }).then(async (collected) => {
+      msg.channel.awaitMessages(filter, { maxMatches: 1, time: 10000, errors: ['time'] }).then(collected => {
         if(collected.first().content === ("confirm")) {
           let newstructure = new Data({
             _id: mongoose.Types.ObjectId,
@@ -46,7 +46,7 @@ module.exports.run = async (bot, msg, args) => {
             Reporter: msg.author.tag
           });
 
-          await newstructure.save()
+          //await newstructure.save()
           msg.channel.send("Structure has been added to the database")
         }else if(collected.first().content === ("end")) return msg.channel.send("Cancelled").catch(err => {
           msg.channel.send("Task failed successfully")
@@ -67,6 +67,9 @@ module.exports.run = async (bot, msg, args) => {
       msg.channel.send("structure has been added")
     })
   }
+  await newstructure.save().then(() => {
+    msg.channel.send("saves")
+  })
 }
 
 module.exports.config = {
