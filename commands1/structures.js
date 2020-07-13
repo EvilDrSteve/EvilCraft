@@ -32,13 +32,21 @@ module.exports.run = async (bot, msg, args) => {
     z = args[2]
     type = args[3]
     var output = []
-    var exact = []
     var datas = await Data.find()
     var structures = Array.from(datas)
     for (let i = 0; i < structures.length; i++) {
 
       if (structures[i].Coords.x == x && structures[i].Coords.z == z) {
-        exact.push(structures[i])
+        let embedExact = new Discord.MessageEmbed()
+        .setColor(config.RED)
+          .setTitle("Coordinates Taken")
+          .addField(structures[i].Type, `x: ${structures[i].Coords.x}, z: ${structures[i].z}`)
+          .setThumbnail(msg.guild.iconURL())
+          .setFooter("Theres already a structure registered under those coordinates")
+          .setTimestamp()
+        
+        msg.channel.send(embedExact)
+        break
       } else {
         let a = Math.abs(structures[i].Coords.x - x)
         let b = Math.abs(structures[i].Coords.z - z)
