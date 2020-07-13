@@ -50,42 +50,42 @@ module.exports.run = async (bot, msg, args) => {
       let embedExist = new Discord.MessageEmbed()
         .setColor(config.RED)
         .setTitle(`Structures near ${x}, ${z}`)
-         .setThumbnail(msg.guild.iconURL())
-         .setFooter('Type "Proceed" to add the structure or "Cancel" to cancel')
-         for(let c = 0; c < output.length; c++){
-           embedExist.addField(output[c].Type, `x: $ { output[c].x }, z: $ { output[c].z }`)
-    }
-    msg.channel.send(`Some structures have been detected near the coordinates mentioned, please check if the structure you are trying to add is already there`)
+        .setThumbnail(msg.guild.iconURL())
+        .setFooter('Type "Proceed" to add the structure or "Cancel" to cancel')
+      for (let c = 0; c < output.length; c++) {
+        embedExist.addField(output[c].Type, `x: ${output[c].x}, z: ${output[c].z}`)
+      }
+      msg.channel.send(`Some structures have been detected near the coordinates mentioned, please check if the structure you are trying to add is already there`)
 
-    msg.channel.send(embedExist).then(m => {
-      const collector = msg.channel.createMessageCollector(filter, { max: 1, time: 10000 })
+      msg.channel.send(embedExist).then(m => {
+        const collector = msg.channel.createMessageCollector(filter, { max: 1, time: 10000 })
 
-      collector.on('collect', c => {
-        if (c.content == "confirm") {
-          senddata(x, z, type, msg)
-        } else return msg.channel.send("Cancelled")
+        collector.on('collect', c => {
+          if (c.content == "confirm") {
+            senddata(x, z, type, msg)
+          } else return msg.channel.send("Cancelled")
+        })
       })
-    })
-  } else {
-    senddata(x, z, type, msg)
-  }
-  //add ends here
-} else if (action == "all") {
-  let datas = await Data.find()
-  var structures = Array.from(datas)
-  let embed = new Discord.MessageEmbed()
-    .setColor(config.RED)
-    .setTitle("Structures | All")
-    .setThumbnail(msg.guild.iconURL())
-    .setFooter(`${msg.author.username}`, msg.author.avatarURL)
-    .setTimestamp()
+    } else {
+      senddata(x, z, type, msg)
+    }
+    //add ends here
+  } else if (action == "all") {
+    let datas = await Data.find()
+    var structures = Array.from(datas)
+    let embed = new Discord.MessageEmbed()
+      .setColor(config.RED)
+      .setTitle("Structures | All")
+      .setThumbnail(msg.guild.iconURL())
+      .setFooter(`${msg.author.username}`, msg.author.avatarURL)
+      .setTimestamp()
 
-  for (let i = 0; i < structures.length; i++) {
-    embed.addField(structures[i].Type, `x: ${structures[i].Coords.x}, z: ${structures[i].Coords.z}`)
-  }
+    for (let i = 0; i < structures.length; i++) {
+      embed.addField(structures[i].Type, `x: ${structures[i].Coords.x}, z: ${structures[i].Coords.z}`)
+    }
 
-  msg.channel.send(embed)
-}
+    msg.channel.send(embed)
+  }
 }
 
 module.exports.config = {
