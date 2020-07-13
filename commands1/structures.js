@@ -66,7 +66,7 @@ module.exports.run = async (bot, msg, args) => {
     let datas = await Data.find()
     let structures = Array.from(datas)
     let embed = new Discord.MessageEmbed
-      setColor(config.RED)
+      .setColor(config.RED)
         .setTitle("Structures | All")
         .setThumbnail(guild.iconURL())
         .setFooter(`${user.username}`, user.avatarURL)
